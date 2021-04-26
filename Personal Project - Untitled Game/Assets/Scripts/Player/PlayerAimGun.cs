@@ -74,8 +74,6 @@ public class PlayerAimGun : MonoBehaviour
         if(Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             gunsType = GunsType.Shotgun;
-            //pistol.SetActive(false);
-            //shotgun.SetActive(true);
         }
         else if(Input.GetAxis("Mouse ScrollWheel") < 0f)
         {
