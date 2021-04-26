@@ -22,11 +22,11 @@ public class PlayerAimGun : MonoBehaviour
     [SerializeField] private float randomSpreadAngle;
     
     [SerializeField] private int amountOfBullets = 5;
+    private GunsType gunsType;
 
     [Header("Other")]
     private float timer = 0f;
     [Range(-5, 5)][SerializeField] private float knockback = 1f;
-    public bool toGunChange;
 
     void Awake()
     {
@@ -35,7 +35,7 @@ public class PlayerAimGun : MonoBehaviour
         playerRb = GetComponent<Rigidbody2D>();
         camShake = GameObject.Find("MainCamera").GetComponent<CameraShake>();
 
-        toGunChange = true;
+        gunsType = GunsType.Pistol;
     }
 
     void Update()
@@ -56,14 +56,7 @@ public class PlayerAimGun : MonoBehaviour
             aimTransform.eulerAngles = new Vector3(rotationDuringSpin, 0, -angle);
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && toGunChange)
-        {
-            toGunChange = false;
-        }
-        else if(Input.GetKeyDown(KeyCode.E) && !toGunChange)
-        {
-            toGunChange = true;
-        }
+        GunChange();
 
         if(Input.GetMouseButtonDown(0) && timer > 0.5f)
         {
@@ -73,6 +66,18 @@ public class PlayerAimGun : MonoBehaviour
 
             StartCoroutine(camShake.Shake(0.1f, 0.2f));
             playerRb.AddForce(-mousePos * knockback, ForceMode2D.Impulse);
+        }
+    }
+
+    void GunChange()
+    {
+        if(Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            gunsType = GunsType.Shotgun;
+        }
+        else if(Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            gunsType = GunsType.Pistol;
         }
     }
 
@@ -88,7 +93,7 @@ public class PlayerAimGun : MonoBehaviour
         Vector3 offset = new Vector3(1, 0.5f, 0);
 
         //This is for normal "gun"
-        if(toGunChange)
+        if(gunsType == GunsType.Pistol)
         {
             GameObject newShotgunBullet = Instantiate(shotgunBulletPrefab, transform.position + offset, aimTransform.rotation) as GameObject;
             newShotgunBullet.GetComponent<Rigidbody2D>().velocity = aimDirection * bulletSpeed;
@@ -104,6 +109,12 @@ public class PlayerAimGun : MonoBehaviour
                 newShotgunBullet.GetComponent<Rigidbody2D>().AddForce((Vector2) aimDirection * bulletSpeed + new Vector2(0, randomSpreadAngle), ForceMode2D.Impulse);
             }
         }
+    }
+
+    private enum GunsType
+    {
+        Pistol, 
+        Shotgun
     }
 
 }
