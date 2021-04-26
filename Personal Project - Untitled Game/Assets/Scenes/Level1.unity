@@ -1861,6 +1861,9 @@ MonoBehaviour:
   aimTransform: {fileID: 304854885}
   randomSpreadAngle: 0
   amountOfBullets: 4
+  maxAmmoAmount: 10
+  currentAmount: 0
+  gunsType: 0
   knockback: 2
 --- !u!96 &1926718792
 TrailRenderer:

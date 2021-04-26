@@ -19,7 +19,7 @@ public class EnemyBullet : Bullet
     {
         playerHealth = GameObject.Find("Player").GetComponent<PlayerHealthController>();
         rb2D = GetComponent<Rigidbody2D>();
-        enemyBulletCollider = GetComponent<Collider2D>();
+        enemyBulletCollider = GetComponent<Collider2D>(); 
     }
     
     void Update()

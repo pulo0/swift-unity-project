@@ -7,22 +7,27 @@ public class PlayerAimGun : MonoBehaviour
     [Header("Scripts variables")]
     private CameraShake camShake;
 
+
     [Header("Components variables")]
     private Rigidbody2D playerRb;
     public GameObject shotgunBulletPrefab;
     public Transform aimTransform;
     private Camera cam;
 
+
     [Header("Rotation floats for the gun")]
     private static float rotationDuringSpin = 180f;
     private static float rotationToSpin = 90f;
 
+
     [Header("Bullet variables")]
     private float bulletSpeed = 40f;
     [SerializeField] private float randomSpreadAngle;
-    
     [SerializeField] private int amountOfBullets = 5;
-    private GunsType gunsType;
+    [SerializeField] private int maxAmmoAmount = 10;
+    [SerializeField] private int currentAmount;
+    [SerializeField] private GunsType gunsType;
+
 
     [Header("Other")]
     private float timer = 0f;
@@ -36,6 +41,7 @@ public class PlayerAimGun : MonoBehaviour
         camShake = GameObject.Find("MainCamera").GetComponent<CameraShake>();
 
         gunsType = GunsType.Pistol;
+        currentAmount = maxAmmoAmount;
     }
 
     void Update()
@@ -51,13 +57,23 @@ public class PlayerAimGun : MonoBehaviour
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
 
+        //Spins a sprite of a gun whenever z axis hits 90 or -90 degrees
         if(angle >= rotationToSpin || angle <= -rotationToSpin)
         {
             aimTransform.eulerAngles = new Vector3(rotationDuringSpin, 0, -angle);
         }
 
-        GunChange();
+        //Ammo related, if ammo is equal 0 then it changes from shotgun to pistol
+        if(currentAmount <= 0)
+        {
+            gunsType = GunsType.Pistol;
 
+            //Placeholder
+            currentAmount = maxAmmoAmount;
+        }
+
+        GunChange();
+        
         if(Input.GetMouseButtonDown(0) && timer > 0.5f)
         {
             timer = 0;
@@ -101,8 +117,11 @@ public class PlayerAimGun : MonoBehaviour
         //This is for shotgun
         else
         {
+            //Subtracts from current ammo amount of bullets
+            currentAmount -= amountOfBullets;
+            Debug.Log(currentAmount);
             for (int i = 0; i <= amountOfBullets; i++)
-            {
+            {  
                 float rangeSpread = 10f;
                 randomSpreadAngle = Random.Range(-rangeSpread, rangeSpread);
                 GameObject newShotgunBullet = Instantiate(shotgunBulletPrefab, transform.position + offset, aimTransform.rotation) as GameObject;
@@ -111,7 +130,7 @@ public class PlayerAimGun : MonoBehaviour
         }
     }
 
-    private enum GunsType
+    public enum GunsType
     {
         Pistol, 
         Shotgun

@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundMask);
 
-        //if raycast hits anything
+        //if raycast hits anything in groundMask
         if(hit.collider != null)
         {
             return true;
