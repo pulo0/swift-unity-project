@@ -18,18 +18,10 @@ public class CameraZoom : MonoBehaviour
     void Update()
     {
         Zoom(8f, 0.11f);
-        CameraPos(20);
     }
 
     void Zoom(float maxSize, float speed)
     {
         cam.orthographicSize = Mathf.SmoothStep(cam.orthographicSize, maxSize, speed);
-    }
-
-    void CameraPos(float offset)
-    {
-        Vector3 playerPos = new Vector3(playerTransform.position.x / offset, playerTransform.position.y / offset, -10);
-        float posSpeedLerp = 0.5f;
-        cam.transform.position = Vector3.Lerp(cam.transform.position, playerPos, posSpeedLerp);
     }
 }
