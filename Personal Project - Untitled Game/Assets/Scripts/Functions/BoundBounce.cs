@@ -10,6 +10,7 @@ public class BoundBounce : MonoBehaviour
     private float speed = 5f;
     private Rigidbody2D rb;
     
+    
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
