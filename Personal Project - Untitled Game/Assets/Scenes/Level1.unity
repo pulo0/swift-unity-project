@@ -252,6 +252,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3466729553852285864, guid: 423ea28fa2aa44a4290043e07ecb5cef,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 3466729553852285867, guid: 423ea28fa2aa44a4290043e07ecb5cef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1109,6 +1114,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 3466729553852285864, guid: 423ea28fa2aa44a4290043e07ecb5cef,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 3466729553852285867, guid: 423ea28fa2aa44a4290043e07ecb5cef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1391,7 +1401,7 @@ PrefabInstance:
     - target: {fileID: 978502034239821808, guid: 99fb45bde9e9c704ebd1ea6822b8b37d,
         type: 3}
       propertyPath: VelocityModule.z.minScalar
-      value: 1.0000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 978502034239821823, guid: 99fb45bde9e9c704ebd1ea6822b8b37d,
         type: 3}
@@ -2157,6 +2167,11 @@ PrefabInstance:
     - target: {fileID: 3466729553852285864, guid: 423ea28fa2aa44a4290043e07ecb5cef,
         type: 3}
       propertyPath: m_Name
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 3466729553852285864, guid: 423ea28fa2aa44a4290043e07ecb5cef,
+        type: 3}
+      propertyPath: m_TagString
       value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 3466729553852285867, guid: 423ea28fa2aa44a4290043e07ecb5cef,

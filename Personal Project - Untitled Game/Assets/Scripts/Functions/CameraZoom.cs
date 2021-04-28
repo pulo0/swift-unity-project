@@ -17,7 +17,7 @@ public class CameraZoom : MonoBehaviour
 
     void Update()
     {
-        Zoom(8f, 0.11f);
+        Zoom(8f, 0.1f);
     }
 
     void Zoom(float maxSize, float speed)

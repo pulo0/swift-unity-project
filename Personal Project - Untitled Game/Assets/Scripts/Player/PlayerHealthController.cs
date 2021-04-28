@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerHealthController : MonoBehaviour
 {
     [Header("Health oriented")]
-    public int maxHealth = 100;
-    public int currentHealth;
+    public float maxHealth = 100;
+    public float currentHealth;
 
     [Header("Damage oriented")]
     private float timeToChangeColor = 0.2f;
