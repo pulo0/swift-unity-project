@@ -23,7 +23,7 @@ public class PlayerAimGun : MonoBehaviour
     [Header("Bullet variables")]
     private float bulletSpeed = 40f;
     [SerializeField] private float randomSpreadAngle;
-    [SerializeField] private int amountOfBullets = 5;
+    [SerializeField] private int amountOfBullets = 10;
     [SerializeField] private int maxAmmoAmount = 10;
     [SerializeField] private int currentAmount;
     [SerializeField] private GunsType gunsType;
@@ -111,7 +111,9 @@ public class PlayerAimGun : MonoBehaviour
         //This is for normal "gun"
         if(gunsType == GunsType.Pistol)
         {
+            //TODO: Make seperate variable (easier to make other weapons)
             GameObject newShotgunBullet = Instantiate(shotgunBulletPrefab, transform.position + offset, aimTransform.rotation) as GameObject;
+            
             newShotgunBullet.GetComponent<Rigidbody2D>().velocity = aimDirection * bulletSpeed;
         }
         //This is for shotgun
@@ -119,11 +121,16 @@ public class PlayerAimGun : MonoBehaviour
         {
             //Subtracts from current ammo amount of bullets
             currentAmount -= amountOfBullets;
+
+            //Delete this
             Debug.Log(currentAmount);
+
             for (int i = 0; i <= amountOfBullets; i++)
             {  
+                //TODO: Put this in float function
                 float rangeSpread = 10f;
                 randomSpreadAngle = Random.Range(-rangeSpread, rangeSpread);
+                
                 GameObject newShotgunBullet = Instantiate(shotgunBulletPrefab, transform.position + offset, aimTransform.rotation) as GameObject;
                 newShotgunBullet.GetComponent<Rigidbody2D>().AddForce((Vector2) aimDirection * bulletSpeed + new Vector2(0, randomSpreadAngle), ForceMode2D.Impulse);
             }
