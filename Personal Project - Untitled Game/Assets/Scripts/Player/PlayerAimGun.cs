@@ -40,12 +40,15 @@ public class PlayerAimGun : MonoBehaviour
         playerRb = GetComponent<Rigidbody2D>();
         camShake = GameObject.Find("MainCamera").GetComponent<CameraShake>();
 
+        
+
         gunsType = GunsType.Pistol;
         currentAmount = maxAmmoAmount;
     }
 
     void Update()
     {
+        
         timer += Time.deltaTime;
 
         //Puts mousePosition input as world point of a screen
@@ -105,36 +108,40 @@ public class PlayerAimGun : MonoBehaviour
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
 
-        //Offset of instatiated bullet
-        Vector3 offset = new Vector3(1, 0.5f, 0);
+        switch (gunsType)
+        {
+            //This is for normal "gun"
+            case GunsType.Pistol:
+            CreateBullet().GetComponent<Rigidbody2D>().velocity = aimDirection * bulletSpeed;
+            break;
 
-        //This is for normal "gun"
-        if(gunsType == GunsType.Pistol)
-        {
-            //TODO: Make seperate variable (easier to make other weapons)
-            GameObject newShotgunBullet = Instantiate(shotgunBulletPrefab, transform.position + offset, aimTransform.rotation) as GameObject;
-            
-            newShotgunBullet.GetComponent<Rigidbody2D>().velocity = aimDirection * bulletSpeed;
-        }
-        //This is for shotgun
-        else
-        {
+            //This is for shotgun
+            case GunsType.Shotgun:
+
             //Subtracts from current ammo amount of bullets
             currentAmount -= amountOfBullets;
 
-            //Delete this
-            Debug.Log(currentAmount);
-
             for (int i = 0; i <= amountOfBullets; i++)
-            {  
-                //TODO: Put this in float function
-                float rangeSpread = 10f;
-                randomSpreadAngle = Random.Range(-rangeSpread, rangeSpread);
-                
-                GameObject newShotgunBullet = Instantiate(shotgunBulletPrefab, transform.position + offset, aimTransform.rotation) as GameObject;
-                newShotgunBullet.GetComponent<Rigidbody2D>().AddForce((Vector2) aimDirection * bulletSpeed + new Vector2(0, randomSpreadAngle), ForceMode2D.Impulse);
+            {   
+                CreateBullet().GetComponent<Rigidbody2D>().AddForce((Vector2) aimDirection * bulletSpeed + new Vector2(0, RandomSpreadAngle(10)), ForceMode2D.Impulse);
             }
+            break;
         }
+    }
+
+    private float RandomSpreadAngle(float rangeSpread)
+    {
+        randomSpreadAngle = Random.Range(-rangeSpread, rangeSpread);
+        return randomSpreadAngle;
+    }
+
+    private GameObject CreateBullet()
+    {
+        Vector3 offset = new Vector3(1, 0.5f, 0);
+
+        GameObject newBullet = Instantiate(shotgunBulletPrefab, transform.position + offset, aimTransform.rotation) as GameObject;
+
+        return newBullet;
     }
 
     public enum GunsType

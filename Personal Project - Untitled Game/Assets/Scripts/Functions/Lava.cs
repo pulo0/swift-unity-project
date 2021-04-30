@@ -5,7 +5,7 @@ using UnityEngine;
 public class Lava : MonoBehaviour
 {
 
-    public PlayerHealthController playerHealth;
+    private HealthController health;
     private Rigidbody2D playerRb;
 
     private float force = 15f;
@@ -14,6 +14,7 @@ public class Lava : MonoBehaviour
 
     void Awake()
     {
+        health = FindObjectOfType<HealthController>().GetComponent<HealthController>();
         playerRb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
     }
 
@@ -49,7 +50,7 @@ public class Lava : MonoBehaviour
 
         for (int i = 0; i < damagePerTouch; i++)
         {
-            playerHealth.TakeDamage(lavaDamage);
+            health.TakeDamage(lavaDamage);
             yield return new WaitForSeconds(0.4f);
         }
 

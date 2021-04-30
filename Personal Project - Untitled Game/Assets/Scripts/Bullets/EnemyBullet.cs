@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyBullet : Bullet
 {
     [Header("Scripts variables")]
-    private PlayerHealthController playerHealth;
+    private HealthController health;
 
     [Header("Components variables")]
     private Rigidbody2D rb2D;
@@ -17,7 +17,7 @@ public class EnemyBullet : Bullet
 
     void Awake()
     {
-        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealthController>();
+        health = GameObject.Find("Player").GetComponent<HealthController>();
         rb2D = GetComponent<Rigidbody2D>();
         enemyBulletCollider = GetComponent<Collider2D>(); 
     }
@@ -38,7 +38,7 @@ public class EnemyBullet : Bullet
 
         if(other.gameObject.CompareTag("Player"))
         {
-            playerHealth.TakeDamage(10);
+            health.TakeDamage(10);
         }
     }
 

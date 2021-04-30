@@ -1204,6 +1204,11 @@ PrefabInstance:
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 1926718794}
+    - target: {fileID: -8483958526538680465, guid: 14d92abd8b2610e45817fcc4de26b70c,
+        type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3870131558355643217, guid: 14d92abd8b2610e45817fcc4de26b70c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1884,7 +1889,7 @@ MonoBehaviour:
     type: 3}
   aimTransform: {fileID: 304854885}
   randomSpreadAngle: 0
-  amountOfBullets: 4
+  amountOfBullets: 3
   maxAmmoAmount: 10
   currentAmount: 0
   gunsType: 0
