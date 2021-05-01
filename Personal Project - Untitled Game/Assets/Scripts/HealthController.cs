@@ -38,6 +38,13 @@ public class HealthController : MonoBehaviour
         StartCoroutine(ColorOnDamage(timeToChangeColor, Color.red));
     }
 
+    public void TakeEnemyDamage(float enDamage)
+    {
+        currentHealth -= enDamage;
+
+        StartCoroutine(ColorOnDamage(timeToChangeColor, Color.white));
+    }
+
     public IEnumerator ColorOnDamage(float time, Color col)
     {
         //Color of player is lerped from his own color to red

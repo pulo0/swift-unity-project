@@ -26,14 +26,14 @@ public class Enemy : MonoBehaviour
     private float bulletSpeed = 25f;
     private int randomJump;
 
-    void Awake()
+    public virtual void Awake()
     {
         timer = time;
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         timer -= Time.deltaTime;
         timerForBullets += Time.deltaTime; 
@@ -45,10 +45,10 @@ public class Enemy : MonoBehaviour
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
 
         Movement();
-        Shoot(2);
+        Shoot(2, 0);
     }
 
-    void Movement()
+    public virtual void Movement()
     {
         if(playerController.ExtraJumps == 0 && randomJump == 1 && timer <= 0)
         {
@@ -72,15 +72,23 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Shoot(float delay)
-    {  
-        if(timerForBullets > delay)
+    public virtual void Shoot(float delay, int amountOfBullets)
+    {
+        if (timerForBullets > delay)
         {
-            GameObject newBullet = Instantiate(bullet, transform.position + new Vector3(1, 0.5f, 0), aimTransform.rotation) as GameObject;
-            newBullet.GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
-            timerForBullets = 0f;
+            for (int i = 0; i <= amountOfBullets; i++)
+            {
+                CreateEnemyBullet().GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+                timerForBullets = 0f;
+            }
         }
-        
+    }
+
+    public virtual GameObject CreateEnemyBullet()
+    {
+        GameObject newBullet = Instantiate(bullet, transform.position + new Vector3(1, 0.5f, 0), aimTransform.rotation) as GameObject;
+
+        return newBullet;
     }
 }
 
