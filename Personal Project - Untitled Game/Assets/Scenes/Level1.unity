@@ -1385,6 +1385,11 @@ PrefabInstance:
       propertyPath: VelocityModule.z.minCurve.m_Curve.Array.data[1].value
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 978502034239821809, guid: 99fb45bde9e9c704ebd1ea6822b8b37d,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 978502034239821823, guid: 99fb45bde9e9c704ebd1ea6822b8b37d,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -1459,6 +1464,11 @@ PrefabInstance:
         type: 3}
       propertyPath: VelocityModule.z.minMaxState
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905156046058428339, guid: 99fb45bde9e9c704ebd1ea6822b8b37d,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6211665313944512003, guid: 99fb45bde9e9c704ebd1ea6822b8b37d,
         type: 3}
@@ -2281,6 +2291,11 @@ PrefabInstance:
       propertyPath: VelocityModule.z.minMaxState
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 978502034239821809, guid: 99fb45bde9e9c704ebd1ea6822b8b37d,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5905156046058428338, guid: 99fb45bde9e9c704ebd1ea6822b8b37d,
         type: 3}
       propertyPath: VelocityModule.x.scalar
@@ -2305,6 +2320,11 @@ PrefabInstance:
         type: 3}
       propertyPath: VelocityModule.z.minMaxState
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5905156046058428339, guid: 99fb45bde9e9c704ebd1ea6822b8b37d,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6211665313944512003, guid: 99fb45bde9e9c704ebd1ea6822b8b37d,
         type: 3}
@@ -2375,20 +2395,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -980841294518476209, guid: 5483942621f060a4bb735ccb1c4a6822,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 1926718789}
     - target: {fileID: 1601877837306493036, guid: 5483942621f060a4bb735ccb1c4a6822,
         type: 3}
       propertyPath: m_Name
       value: PoisonEnemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 1601877837306493036, guid: 5483942621f060a4bb735ccb1c4a6822,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1601877837306493047, guid: 5483942621f060a4bb735ccb1c4a6822,
         type: 3}
@@ -2445,6 +2455,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4864148736536394487, guid: 5483942621f060a4bb735ccb1c4a6822,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1926718789}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5483942621f060a4bb735ccb1c4a6822, type: 3}
 --- !u!1001 &4792198272223291336
@@ -2528,6 +2543,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 105443759}
     m_Modifications:
+    - target: {fileID: 3585012721324542027, guid: 0f20dcce528dcdb40acba93b6466ffc3,
+        type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6811678729107603190, guid: 0f20dcce528dcdb40acba93b6466ffc3,
         type: 3}
       propertyPath: m_Name

@@ -118,8 +118,3 @@ public class Enemy : MonoBehaviour
         PoisonEn
     }
 }
-
-    
-
-
-    
