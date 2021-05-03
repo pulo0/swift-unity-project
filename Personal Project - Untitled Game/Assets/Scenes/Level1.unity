@@ -2385,6 +2385,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PoisonEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1601877837306493036, guid: 5483942621f060a4bb735ccb1c4a6822,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1601877837306493047, guid: 5483942621f060a4bb735ccb1c4a6822,
         type: 3}
       propertyPath: m_RootOrder
