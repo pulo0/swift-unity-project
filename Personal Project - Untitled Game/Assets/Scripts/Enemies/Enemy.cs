@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     private float time = 2;
     private float timer;
     private float timerForBullets;
-    private float bulletSpeed = 25f;
+    private float bulletSpeed;
     private int randomJump;
 
     void Awake()
@@ -51,11 +51,11 @@ public class Enemy : MonoBehaviour
         switch(enemyType)
         {
             case EnemyType.NormalEn:
-            Shoot(2, 0);
+            Shoot(2, 0, 25);
             break;
 
             case EnemyType.PoisonEn:
-            Shoot(3, 1);
+            Shoot(3, 1, 15);
             break;
         }
         
@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Shoot(float delay, int amountOfBullets)
+    void Shoot(float delay, int amountOfBullets, float bulletSpeed)
     {
         if (timerForBullets > delay)
         {
