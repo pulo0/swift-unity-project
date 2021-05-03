@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public EnemyType enemyType; 
+
     [Header("Components variables")]
     private PlayerController playerController;
     public Transform target;
@@ -26,14 +28,14 @@ public class Enemy : MonoBehaviour
     private float bulletSpeed = 25f;
     private int randomJump;
 
-    public virtual void Awake()
+    void Awake()
     {
         timer = time;
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
-    public virtual void Update()
+    
+    void Update()
     {
         timer -= Time.deltaTime;
         timerForBullets += Time.deltaTime; 
@@ -45,11 +47,23 @@ public class Enemy : MonoBehaviour
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
 
         Movement();
-        Shoot(2, 0);
+
+        switch(enemyType)
+        {
+            case EnemyType.NormalEn:
+            Shoot(2, 0);
+            break;
+
+            case EnemyType.PoisonEn:
+            Shoot(3, 1);
+            break;
+        }
+        
     }
 
-    public virtual void Movement()
+    void Movement()
     {
+        //Jump functions
         if(playerController.ExtraJumps == 0 && randomJump == 1 && timer <= 0)
         {
             enemyRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
@@ -60,8 +74,9 @@ public class Enemy : MonoBehaviour
         {
             enemyRb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             timer = time;
-        }       
+        }   
 
+        //Movement
         if(Vector2.Distance(transform.position, target.position) > stoppingDistance || Vector2.Distance(transform.position, target.position) < -stoppingDistance)
         {
             enemyRb.AddForce(direction * moveForce);
@@ -72,23 +87,35 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public virtual void Shoot(float delay, int amountOfBullets)
+    void Shoot(float delay, int amountOfBullets)
     {
         if (timerForBullets > delay)
         {
             for (int i = 0; i <= amountOfBullets; i++)
             {
-                CreateEnemyBullet().GetComponent<Rigidbody2D>().velocity = direction * bulletSpeed;
+                CreateEnemyBullet().GetComponent<Rigidbody2D>().AddForce((Vector2) direction * bulletSpeed + new Vector2(0, RandomSpreadAngle(10)), ForceMode2D.Impulse);
                 timerForBullets = 0f;
             }
         }
     }
 
-    public virtual GameObject CreateEnemyBullet()
+    private float RandomSpreadAngle(float rangeSpread)
+    {
+        float randomSpreadAngle = Random.Range(-rangeSpread, rangeSpread);
+        return randomSpreadAngle;
+    }
+
+   private GameObject CreateEnemyBullet()
     {
         GameObject newBullet = Instantiate(bullet, transform.position + new Vector3(1, 0.5f, 0), aimTransform.rotation) as GameObject;
 
         return newBullet;
+    }
+
+    public enum EnemyType
+    {
+        NormalEn,
+        PoisonEn
     }
 }
 

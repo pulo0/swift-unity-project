@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1601877837306493047}
   - component: {fileID: 1601877837306493040}
-  - component: {fileID: -980841294518476209}
+  - component: {fileID: 4864148736536394487}
   - component: {fileID: 1601877837306493046}
   - component: {fileID: 1601877837306493042}
   - component: {fileID: 1601877837306493043}
@@ -198,7 +198,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-980841294518476209
+--- !u!114 &4864148736536394487
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -207,9 +207,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1601877837306493036}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62be1519b06ab3f4da003532544df73e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4b2e9c115ab0edb419aa08bf5a2987fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 1
   target: {fileID: 0}
   aimTransform: {fileID: 1601877835709018654}
   lavaPrefabTransfrom: {fileID: 3870131558355643217, guid: 14d92abd8b2610e45817fcc4de26b70c,
