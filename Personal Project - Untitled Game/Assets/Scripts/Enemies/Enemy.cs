@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
         switch(enemyType)
         {
             case EnemyType.NormalEn:
-            Shoot(2, 0, 25);
+            Shoot(2, 0, 20);
             break;
 
             case EnemyType.PoisonEn:

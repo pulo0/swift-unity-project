@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
             rb.AddForce(Vector2.up * bounceForce, ForceMode2D.Impulse);
         }
 
-        if(other.gameObject.name == "Enemy")
+        if(other.gameObject.name == "Enemy" || other.gameObject.name == "PoisonEnemy")
         {
             Destroy(other.gameObject);
             Instantiate(enemyDestroyParticle, other.transform.position, Quaternion.identity);
