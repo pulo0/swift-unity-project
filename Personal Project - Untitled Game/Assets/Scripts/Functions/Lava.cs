@@ -8,6 +8,7 @@ public class Lava : MonoBehaviour
     private HealthController health;
     private Rigidbody2D playerRb;
 
+    [SerializeField] private float lavaDamageCooldown = 0.4f;
     private float force = 15f;
     private float lavaDamage = 10f;
     private int damagePerTouch = 5;
@@ -23,7 +24,7 @@ public class Lava : MonoBehaviour
 
         Debug.Log("\nLava Damage: " + lavaDamage);
 
-        if(LavaDamage() != null)
+        if(LavaDamage(lavaDamageCooldown) != null)
         {
             lavaDamage += Time.deltaTime;
         }
@@ -34,7 +35,7 @@ public class Lava : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(LavaDamage());
+            StartCoroutine(LavaDamage(lavaDamageCooldown));
             playerRb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
         }
         else 
@@ -44,14 +45,15 @@ public class Lava : MonoBehaviour
         
     }
 
-    IEnumerator LavaDamage()
+    IEnumerator LavaDamage(float damageCooldown)
     {
-        lavaDamage = 10;
+        float firstDamageValue = 10f;
+        lavaDamage = firstDamageValue;
 
         for (int i = 0; i < damagePerTouch; i++)
         {
             health.TakeDamage(lavaDamage);
-            yield return new WaitForSeconds(0.4f);
+            yield return new WaitForSeconds(damageCooldown);
         }
 
         yield return null;

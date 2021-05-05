@@ -5,8 +5,7 @@ using UnityEngine;
 public class CameraZoom : MonoBehaviour
 {
     private Camera cam;
-    private static float startSize = 1f;
-    public Transform playerTransform; 
+    private static float startSize = 1f; 
 
     void Awake()
     {

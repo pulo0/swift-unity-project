@@ -9,23 +9,27 @@ public class EnemyBullet : Bullet
 
     [Header("Components variables")]
     private Rigidbody2D rb2D;
-    private Collider2D enemyBulletCollider;
-    public Collider2D enemyCollider;
 
     [Header("Forces")]
     private float bounceBulletForce = 5f;
 
+    [Header("Damage related")]
+    [SerializeField] private float damageToPlayer = 5f;
+
+    [Header("Other")]
+    private static int enemyLayer = 11;
+    private static int enemyBulletLayer = 12;
+
     void Awake()
     {
-        health = GameObject.Find("Player").GetComponent<HealthController>();
+        health = FindObjectOfType<PlayerController>().GetComponent<HealthController>();
         rb2D = GetComponent<Rigidbody2D>();
-        enemyBulletCollider = GetComponent<Collider2D>(); 
     }
     
     void Update()
     {
         StartCoroutine(DestroyCountdown(2));
-        Physics2D.IgnoreCollision(enemyCollider, enemyBulletCollider);
+        Physics2D.IgnoreLayerCollision(enemyLayer, enemyBulletLayer);
     }
 
     private void OnCollisionEnter2D(Collision2D other) 
@@ -38,7 +42,9 @@ public class EnemyBullet : Bullet
 
         if(other.gameObject.CompareTag("Player"))
         {
-            health.TakeDamage(10);
+            health.TakeDamage(damageToPlayer);
+            Destroy(gameObject);
+            Instantiate(destroyParticle, transform.position, Quaternion.identity);
         }
     }
 

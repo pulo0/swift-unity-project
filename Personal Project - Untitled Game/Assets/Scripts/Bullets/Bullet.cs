@@ -16,8 +16,8 @@ public class Bullet : MonoBehaviour
 
     void Awake()
     {
+        playerCollider = FindObjectOfType<PlayerController>().GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
-        playerCollider = GameObject.Find("Player").GetComponent<Collider2D>();
         bulletCollider = GetComponent<Collider2D>();
     }
     
@@ -35,10 +35,13 @@ public class Bullet : MonoBehaviour
             rb.AddForce(Vector2.up * bounceForce, ForceMode2D.Impulse);
         }
 
-        if(other.gameObject.name == "Enemy" || other.gameObject.name == "PoisonEnemy")
+        if(other.gameObject.CompareTag("Enemy"))
         {
             Destroy(other.gameObject);
             Instantiate(enemyDestroyParticle, other.transform.position, Quaternion.identity);
+            
+            Destroy(gameObject);
+            Instantiate(destroyParticle, transform.position, Quaternion.identity);
         }
     }
    
@@ -48,4 +51,6 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
         Instantiate(destroyParticle, transform.position, Quaternion.identity);
     }
+
+    
 }
