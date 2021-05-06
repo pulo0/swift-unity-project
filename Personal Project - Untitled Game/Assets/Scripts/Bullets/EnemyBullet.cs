@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyBullet : Bullet
 {
+    //public ParticleType particleType;
+
     [Header("Scripts variables")]
     private HealthController health;
 
@@ -34,21 +36,21 @@ public class EnemyBullet : Bullet
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-
-        if(other.gameObject.CompareTag("Ground"))
+        switch (other.gameObject.tag)
         {
-            rb2D.AddForce(Vector2.up * bounceBulletForce, ForceMode2D.Impulse);
-        }
+            case "Ground":
+            rb2D.AddForce(Vector2.up * bounceBulletForce, ForceMode2D.Force);
+            break;
 
-        if(other.gameObject.CompareTag("Player"))
-        {
+            case "Player":
             health.TakeDamage(damageToPlayer);
             Destroy(gameObject);
             Instantiate(destroyParticle, transform.position, Quaternion.identity);
+            break;          
         }
     }
 
-    public override IEnumerator DestroyCountdown(int time)
+    public override IEnumerator DestroyCountdown(float time)
     {
         return base.DestroyCountdown(time);
     }

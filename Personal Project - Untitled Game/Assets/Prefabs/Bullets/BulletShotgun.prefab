@@ -225,10 +225,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3cfd7b198e4b7458e90b772c2d91b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemies:
+  - {fileID: 4792198273302426887, guid: 92d8379d07736a84eaf4b4f2cad8495c, type: 3}
+  - {fileID: 1601877837306493036, guid: 5483942621f060a4bb735ccb1c4a6822, type: 3}
   destroyParticle: {fileID: 7778648648967700934, guid: 314620b639e6da946acc29bc53acff6d,
     type: 3}
-  enemyDestroyParticle: {fileID: 679678468743487055, guid: 1160967cb313c154f9a074d37214955b,
-    type: 3}
+  enemyDestroyParticle:
+  - {fileID: 679678468743487055, guid: 1160967cb313c154f9a074d37214955b, type: 3}
+  - {fileID: 679678468743487055, guid: ed9423d70fba59e4194d239f455a62a9, type: 3}
 --- !u!114 &2790152659943643859
 MonoBehaviour:
   m_ObjectHideFlags: 0

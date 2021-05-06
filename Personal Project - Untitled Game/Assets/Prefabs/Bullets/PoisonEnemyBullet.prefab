@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98ffce2595eb7ba4180fddaae1e258b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyParticle: {fileID: 1126092111401621928, guid: 86b3166448cc90041b569b6ccf3e2e8d,
+  destroyParticle: {fileID: 3629187536430077829, guid: 0a9ee038fcb58ab48aa727d5df366af7,
     type: 3}
   enemyDestroyParticle: {fileID: 0}
   damageToPlayer: 5

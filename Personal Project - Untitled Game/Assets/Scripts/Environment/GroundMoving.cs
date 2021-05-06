@@ -54,7 +54,7 @@ public class GroundMoving : MonoBehaviour
     {
         if(other.gameObject == player)
         {
-            //PLayer's transform is set null on exit from collider
+            //Player's transform is set null on exit from collider
             other.collider.transform.SetParent(null);
         }
     }

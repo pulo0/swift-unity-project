@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+
     [Header("Components variables")]
     private Rigidbody2D rb;
+    
     public ParticleSystem destroyParticle;
-    public ParticleSystem enemyDestroyParticle;
+    public ParticleSystem[] enemyDestroyParticle;
     private Collider2D playerCollider;
     private Collider2D bulletCollider;
 
@@ -23,34 +25,34 @@ public class Bullet : MonoBehaviour
     
     void Update()
     {
-        StartCoroutine(DestroyCountdown(2));   
+        StartCoroutine(DestroyCountdown(1f));   
         Physics2D.IgnoreCollision(playerCollider, bulletCollider);
     }
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-
-        if(other.gameObject.CompareTag("Ground"))
+        switch (other.gameObject.tag)
         {
+            case "Ground":
             rb.AddForce(Vector2.up * bounceForce, ForceMode2D.Impulse);
-        }
+            break;
 
-        if(other.gameObject.CompareTag("Enemy"))
-        {
+            case "Enemy":
             Destroy(other.gameObject);
-            Instantiate(enemyDestroyParticle, other.transform.position, Quaternion.identity);
-            
-            Destroy(gameObject);
-            Instantiate(destroyParticle, transform.position, Quaternion.identity);
+            Instantiate(enemyDestroyParticle[0], other.transform.position, Quaternion.identity);
+            break;
+
+            case "PoisonEnemy":
+            Destroy(other.gameObject); 
+            Instantiate(enemyDestroyParticle[1], other.transform.position, Quaternion.identity); 
+            break;
         }
     }
    
-    public virtual IEnumerator DestroyCountdown(int time)
+    public virtual IEnumerator DestroyCountdown(float time)
     {
         yield return new WaitForSeconds(time);
         Destroy(gameObject);
         Instantiate(destroyParticle, transform.position, Quaternion.identity);
     }
-
-    
 }
