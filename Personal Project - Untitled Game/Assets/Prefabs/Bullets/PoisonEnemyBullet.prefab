@@ -255,5 +255,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyParticle: {fileID: 3629187536430077829, guid: 0a9ee038fcb58ab48aa727d5df366af7,
     type: 3}
-  enemyDestroyParticle: {fileID: 0}
+  enemyDestroyParticle:
+  - {fileID: 0}
+  bulletType: 1
+  damageCooldown: 0.4
+  poisonDamageIncreasing: 5
   damageToPlayer: 5

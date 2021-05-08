@@ -21,9 +21,6 @@ public class Lava : MonoBehaviour
 
     void Update() 
     {
-
-        Debug.Log("\nLava Damage: " + lavaDamage);
-
         if(LavaDamage(lavaDamageCooldown) != null)
         {
             lavaDamage += Time.deltaTime;

@@ -149,5 +149,4 @@ public class PlayerAimGun : MonoBehaviour
         Pistol, 
         Shotgun
     }
-
 }
