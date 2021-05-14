@@ -3,7 +3,14 @@ guid: b76a730c0515bf84aad96e67d51d660d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - enemySpriteRenderer: {fileID: 4792198273302426907, guid: 92d8379d07736a84eaf4b4f2cad8495c,
+      type: 3}
+  - poisonSpriteRender: {fileID: 1601877837306493040, guid: 5483942621f060a4bb735ccb1c4a6822,
+      type: 3}
+  - spriteRenderer: {instanceID: 0}
+  - trail: {instanceID: 0}
+  - healthBar: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

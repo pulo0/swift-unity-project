@@ -5,6 +5,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
 
+    [Header("Scripts variables")]
+    private HealthController healthController;
+
     [Header("Components variables")]
     private Rigidbody2D rb;
     
@@ -19,6 +22,7 @@ public class Bullet : MonoBehaviour
     void Awake()
     {
         playerCollider = FindObjectOfType<PlayerController>().GetComponent<Collider2D>();
+        healthController = FindObjectOfType<Enemy>().GetComponent<HealthController>();
         rb = GetComponent<Rigidbody2D>();
         bulletCollider = GetComponent<Collider2D>();
     }
@@ -31,6 +35,8 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
+        SpriteRenderer sr = other.gameObject.GetComponent<SpriteRenderer>();
+
         switch (other.gameObject.tag)
         {
             case "Ground":
@@ -38,13 +44,49 @@ public class Bullet : MonoBehaviour
             break;
 
             case "Enemy":
-            Destroy(other.gameObject);
-            Instantiate(enemyDestroyParticle[0], other.transform.position, Quaternion.identity);
+            healthController.TakeEnemyDamage(5f);
+            healthController.ColorOnDamage(sr);
+            Destroy(gameObject);
+            Instantiate(destroyParticle, transform.position, Quaternion.identity);
+            if(healthController.enemyCurrentHealth[0] <= 0)
+            {
+                Instantiate(enemyDestroyParticle[0], other.transform.position, Quaternion.identity);
+                Destroy(other.gameObject);
+            }
             break;
 
             case "PoisonEnemy":
-            Destroy(other.gameObject); 
-            Instantiate(enemyDestroyParticle[1], other.transform.position, Quaternion.identity); 
+            healthController.TakePoisonDamage(5f);
+            healthController.ColorOnDamage(sr);
+            Destroy(gameObject);
+            Instantiate(destroyParticle, transform.position, Quaternion.identity); 
+            if(healthController.enemyCurrentHealth[1] <= 0)
+            {
+                Instantiate(enemyDestroyParticle[1], other.transform.position, Quaternion.identity);
+                Destroy(other.gameObject);
+            }
+            break;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other) 
+    {
+        SpriteRenderer sr = other.gameObject.GetComponent<SpriteRenderer>();
+
+        switch(other.gameObject.tag)
+        {
+            case "Enemy":
+            if(healthController.canResetColor == true)
+            {
+                healthController.ResetColor(sr, Color.red);
+            }
+            break;
+
+            case "PoisonEnemy":
+            if(healthController.canResetColor == true)
+            {
+                healthController.ResetColor(sr, Color.green);
+            }
             break;
         }
     }

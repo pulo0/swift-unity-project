@@ -15,7 +15,7 @@ public class Lava : MonoBehaviour
 
     void Awake()
     {
-        health = FindObjectOfType<HealthController>().GetComponent<HealthController>();
+        health = FindObjectOfType<PlayerController>().GetComponent<HealthController>();
         playerRb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
     }
 
@@ -44,7 +44,7 @@ public class Lava : MonoBehaviour
 
     IEnumerator LavaDamage(float damageCooldown)
     {
-        float firstDamageValue = 10f;
+        float firstDamageValue = 5f;
         lavaDamage = firstDamageValue;
 
         for (int i = 0; i < damagePerTouch; i++)

@@ -4,29 +4,50 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
+
     [Header("Health oriented")]
+    [Space]
     public float maxHealth = 100;
     public float currentHealth;
+    public float[] enemyMaxHealth;
+    public float[] enemyCurrentHealth;
+    public bool canResetColor = false;
 
     [Header("Damage oriented")]
+    [Space]
     private float timeToChangeColor = 0.2f;
     private float lerpSpeed = 1f;
-    public SpriteRenderer spriteRenderer;
-    public Color colorOfPlayer;
+    private SpriteRenderer spriteRenderer;
+    public Color colorOfObject;
     public TrailRenderer trail;
     public Gradient damageGradient;
     public Gradient normalGradient;
+    public Color col;
 
     [Header("Scripts variables")]
+    [Space]
     public HealthBar healthBar;
-    
-    void Start()
+    private PostProcessController postProcessController; 
+
+    void Awake()
     {
-        //Current Health is setted to max health
-        //Then value of max health is setted im the health bar
+        postProcessController = FindObjectOfType<PostProcessController>().GetComponent<PostProcessController>();
+        SettingArrays();
+
         currentHealth = maxHealth;
-        healthBar.SetMaxHealth(maxHealth);
+        enemyCurrentHealth = enemyMaxHealth;
     }
+
+    public void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if(gameObject.CompareTag("Player"))
+        {
+            healthBar.SetMaxHealth(maxHealth);
+        }
+    }
+
 
     public void TakeDamage(float damage)
     {
@@ -34,15 +55,40 @@ public class HealthController : MonoBehaviour
 
         //Health bar tracks now current health
         healthBar.SetHealth(currentHealth);
-
-        StartCoroutine(ColorOnDamage(timeToChangeColor, Color.red));
+        
+        StartCoroutine(ColorOnDamage(timeToChangeColor, Color.red)); 
+        postProcessController.IncreaseOnDamage();
     }
 
     public void TakeEnemyDamage(float enDamage)
     {
-        currentHealth -= enDamage;
+        enemyCurrentHealth[0] -= enDamage;
+    }
 
-        StartCoroutine(ColorOnDamage(timeToChangeColor, Color.white));
+    public void TakePoisonDamage(float enemyDamage)
+    {
+        enemyCurrentHealth[1] -= enemyDamage;
+    }
+
+
+    void SettingArrays()
+    {
+        enemyCurrentHealth = new float[2];
+        enemyMaxHealth = new float[2];
+        enemyMaxHealth[0] = 10f;
+        enemyMaxHealth[1] = 15f;
+    }
+
+    public void ColorOnDamage(SpriteRenderer sr)
+    {
+        sr.color = new Color(1, 1, 1, 1f);
+        canResetColor = true;
+    }
+
+    public void ResetColor(SpriteRenderer sr, Color col)
+    {
+        sr.color = col;
+        canResetColor = false;
     }
 
     public IEnumerator ColorOnDamage(float time, Color col)
@@ -57,7 +103,7 @@ public class HealthController : MonoBehaviour
 
         //Color of player is lerped from damage color to his original color
         //Player's trail is setted to his original gradient
-        spriteRenderer.color = Color.Lerp(spriteRenderer.color, colorOfPlayer, lerpSpeed);
+        spriteRenderer.color = Color.Lerp(spriteRenderer.color, colorOfObject, lerpSpeed);
         trail.colorGradient = normalGradient;
     }
 }

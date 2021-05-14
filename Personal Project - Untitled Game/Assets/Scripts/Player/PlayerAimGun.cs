@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerAimGun : MonoBehaviour
 {
+    public bool canShoot = true;
+
     [Header("Scripts variables")]
     private CameraShake camShake;
 
@@ -40,8 +42,6 @@ public class PlayerAimGun : MonoBehaviour
         playerRb = GetComponent<Rigidbody2D>();
         camShake = GameObject.Find("MainCamera").GetComponent<CameraShake>();
 
-        
-
         gunsType = GunsType.Pistol;
         currentAmount = maxAmmoAmount;
     }
@@ -77,7 +77,7 @@ public class PlayerAimGun : MonoBehaviour
 
         GunChange();
         
-        if(Input.GetMouseButtonDown(0) && timer > 0.5f)
+        if(Input.GetMouseButtonDown(0) && timer > 0.5f && canShoot == true)
         {
             timer = 0;
 

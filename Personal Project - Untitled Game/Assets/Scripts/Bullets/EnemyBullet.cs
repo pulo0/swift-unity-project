@@ -55,6 +55,7 @@ public class EnemyBullet : Bullet
             {
                 case BulletType.Normal:
                 health.TakeDamage(damageToPlayer);
+                Destroy(gameObject);
                 break;
 
                 case BulletType.Poison:
