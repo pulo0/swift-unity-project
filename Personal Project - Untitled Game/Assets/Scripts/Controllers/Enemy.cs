@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Difficulty;
 
 
 public class Enemy : MonoBehaviour
 {
     public EnemyType enemyType; 
+    public LevelDifficulty levelDifficulty;
 
     [Header("Components variables")]
     private PlayerController playerController;
@@ -32,6 +34,7 @@ public class Enemy : MonoBehaviour
     {
         timer = time;
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        levelDifficulty = GameObject.Find("LevelManager").GetComponent<LevelDifficulty>(); 
     }
     
     void Update()
@@ -48,14 +51,14 @@ public class Enemy : MonoBehaviour
         switch(enemyType)
         {
             case EnemyType.NormalEn:
-            Movement(8);
-            Shoot(2, 0, 20);
+            Movement(levelDifficulty.enemyMovementSpeed);
+            Shoot(levelDifficulty.enemyShootDelay, levelDifficulty.enemyShootAmountOfBullets, levelDifficulty.enemyShootSpeed);
             break;
 
             case EnemyType.PoisonEn:
-            Movement(4);
-            Shoot(3, 1, 15);
-            StartCoroutine(ChangeEnemyGravity(0.1f, 6f));
+            Movement(levelDifficulty.poisonEnMovementSpeed);
+            Shoot(levelDifficulty.poisonEnShootDelay, levelDifficulty.poisonEnShootAmountOfBullets, levelDifficulty.poisonEnShootSpeed);
+            StartCoroutine(ChangeEnemyGravity(levelDifficulty.gravModifier, levelDifficulty.timeToChangeGrav));
             break;
         }
         
