@@ -159,7 +159,7 @@ TrailRenderer:
       key0: {r: 1, g: 1, b: 1, a: 1}
       key1: {r: 1, g: 0.559062, b: 0, a: 1}
       key2: {r: 1, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
+      key3: {r: 1, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
@@ -167,7 +167,7 @@ TrailRenderer:
       ctime0: 8096
       ctime1: 38357
       ctime2: 56090
-      ctime3: 0
+      ctime3: 56090
       ctime4: 0
       ctime5: 0
       ctime6: 0
@@ -225,9 +225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3cfd7b198e4b7458e90b772c2d91b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemies:
-  - {fileID: 4792198273302426887, guid: 92d8379d07736a84eaf4b4f2cad8495c, type: 3}
-  - {fileID: 1601877837306493036, guid: 5483942621f060a4bb735ccb1c4a6822, type: 3}
   destroyParticle: {fileID: 7778648648967700934, guid: 314620b639e6da946acc29bc53acff6d,
     type: 3}
   enemyDestroyParticle:

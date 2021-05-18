@@ -56,11 +56,6 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             rb.AddTorque(torqueForce);
         }
-
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
     }
 
     //This bool determines whenever player is on the ground or not using raycast

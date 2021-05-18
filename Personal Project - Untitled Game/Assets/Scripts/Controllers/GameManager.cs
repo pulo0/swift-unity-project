@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public HealthController healthController;
-    public PlayerAimGun playerShooting;
+    private HealthController healthController;
+    private PlayerAimGun playerShooting;
 
     public int enemyCount;
     
@@ -23,6 +23,16 @@ public class GameManager : MonoBehaviour
         if(enemyCount == 0)
         {
             playerShooting.canShoot = false;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         ResetLevel();

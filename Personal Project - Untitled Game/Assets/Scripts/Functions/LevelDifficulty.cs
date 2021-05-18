@@ -18,6 +18,8 @@ namespace Difficulty
         public float gravModifier;
         public float timeToChangeGrav;
         public bool allEnemiesHaveGravity;
+        public float camShakeDuration;
+        public float camShakeMagnitude;
 
         [Header("Poison Enemy Stuff")]
         [Space]
@@ -25,6 +27,10 @@ namespace Difficulty
         public float poisonEnShootDelay;
         public int poisonEnShootAmountOfBullets;
         public float poisonEnShootSpeed;  
+
+        [Header("Player Related")]
+        [Space]
+        public float timeToShoot;
     }
 }
 
