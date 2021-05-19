@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Difficulty;
 
 public class Lava : MonoBehaviour
 {
 
     private HealthController health;
+    private LevelDifficulty levelDifficulty;
     private Rigidbody2D playerRb;
 
     [SerializeField] private float lavaDamageCooldown = 0.4f;
@@ -16,6 +18,7 @@ public class Lava : MonoBehaviour
     void Awake()
     {
         health = FindObjectOfType<PlayerController>().GetComponent<HealthController>();
+        levelDifficulty = GameObject.Find("LevelManager").GetComponent<LevelDifficulty>();
         playerRb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
     }
 
@@ -44,7 +47,7 @@ public class Lava : MonoBehaviour
 
     IEnumerator LavaDamage(float damageCooldown)
     {
-        float firstDamageValue = 5f;
+        float firstDamageValue = levelDifficulty.lavaDamage;
         lavaDamage = firstDamageValue;
 
         for (int i = 0; i < damagePerTouch; i++)

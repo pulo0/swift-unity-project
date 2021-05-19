@@ -31,6 +31,11 @@ namespace Difficulty
         [Header("Player Related")]
         [Space]
         public float timeToShoot;
+
+        [Header("Lava Stuff")]
+        [Space]
+        public float lavaDamage;
+
     }
 }
 

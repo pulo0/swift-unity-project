@@ -269,8 +269,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fac2e1d7fd93364f897d2ce63db6046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthController: {fileID: 0}
-  playerShooting: {fileID: 0}
   enemyCount: 0
 --- !u!4 &154035081
 Transform:
@@ -1109,6 +1107,7 @@ MonoBehaviour:
   poisonEnShootAmountOfBullets: 1
   poisonEnShootSpeed: 15
   timeToShoot: 0.5
+  lavaDamage: 5
 --- !u!4 &736557412 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7425578343192186944, guid: 99fb45bde9e9c704ebd1ea6822b8b37d,
