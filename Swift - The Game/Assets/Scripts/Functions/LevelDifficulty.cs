@@ -28,13 +28,20 @@ namespace Difficulty
         public int poisonEnShootAmountOfBullets;
         public float poisonEnShootSpeed;  
 
-        [Header("Player Related")]
+        [Header("Player Stuff")]
         [Space]
         public float timeToShoot;
 
         [Header("Lava Stuff")]
         [Space]
         public float lavaDamage;
+
+        [Header("Zoom & Bounds stuff")]
+        [Space]
+        public int zoomValue;
+        public float speedOfZomm;
+        public float verticalBoundValue;
+        public float horizontalBoundValue;
 
     }
 }
