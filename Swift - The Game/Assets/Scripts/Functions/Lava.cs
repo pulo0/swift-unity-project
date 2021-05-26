@@ -6,7 +6,7 @@ using Difficulty;
 public class Lava : MonoBehaviour
 {
 
-    private HealthController health;
+    private PlayerHealthCon playerHealth;
     private LevelDifficulty levelDifficulty;
     private Rigidbody2D playerRb;
 
@@ -17,7 +17,7 @@ public class Lava : MonoBehaviour
 
     void Awake()
     {
-        health = FindObjectOfType<PlayerController>().GetComponent<HealthController>();
+        playerHealth = FindObjectOfType<PlayerController>().GetComponent<PlayerHealthCon>();
         levelDifficulty = GameObject.Find("LevelManager").GetComponent<LevelDifficulty>();
         playerRb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
     }
@@ -52,7 +52,7 @@ public class Lava : MonoBehaviour
 
         for (int i = 0; i < damagePerTouch; i++)
         {
-            health.TakeDamage(lavaDamage);
+            playerHealth.TakeDamage(lavaDamage);
             yield return new WaitForSeconds(damageCooldown);
         }
 

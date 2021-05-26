@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    private HealthController healthController;
+    private PlayerHealthCon playerHealth;
     private PlayerAimGun playerShooting;
 
     public int enemyCount;
@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
-        healthController = FindObjectOfType<PlayerController>().GetComponent<HealthController>();
+        playerHealth = FindObjectOfType<PlayerController>().GetComponent<PlayerHealthCon>();
         playerShooting = FindObjectOfType<PlayerController>().GetComponent<PlayerAimGun>();
     }
 
@@ -42,9 +42,9 @@ public class GameManager : MonoBehaviour
 
     void ResetLevel()
     {
-        if(healthController.gameObject.CompareTag("Player"))
+        if(playerHealth.gameObject.CompareTag("Player"))
         {
-            if(healthController.currentHealth <= 0)
+            if(playerHealth.currentHealth <= 0)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }

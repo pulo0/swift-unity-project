@@ -7,7 +7,7 @@ public class EnemyBullet : Bullet
     public BulletType bulletType; 
 
     [Header("Scripts variables")]
-    private HealthController health;
+    private PlayerHealthCon playerHealth;
 
     [Header("Components variables")]
     private Rigidbody2D rb2D;
@@ -27,7 +27,7 @@ public class EnemyBullet : Bullet
 
     void Awake()
     {
-        health = FindObjectOfType<PlayerController>().GetComponent<HealthController>();
+        playerHealth = FindObjectOfType<PlayerController>().GetComponent<PlayerHealthCon>();
         rb2D = GetComponent<Rigidbody2D>();
     }
     
@@ -54,7 +54,7 @@ public class EnemyBullet : Bullet
             switch (bulletType)
             {
                 case BulletType.Normal:
-                health.TakeDamage(damageToPlayer);
+                playerHealth.TakeDamage(damageToPlayer);
                 Destroy(gameObject);
                 break;
 
@@ -75,7 +75,7 @@ public class EnemyBullet : Bullet
 
         for (int i = 0; i < damagePerTouch; i++)
         {
-            health.TakeDamage(poisonDamageIncreasing);
+            playerHealth.TakeDamage(poisonDamageIncreasing);
             yield return new WaitForSeconds(damageCooldown);
         }
         Destroy(gameObject);

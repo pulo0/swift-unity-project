@@ -877,7 +877,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerHealth
       value: 
-      objectReference: {fileID: 1926718794}
+      objectReference: {fileID: 0}
     - target: {fileID: 3870131558355643217, guid: 14d92abd8b2610e45817fcc4de26b70c,
         type: 3}
       propertyPath: m_RootOrder
@@ -1333,7 +1333,7 @@ PrefabInstance:
         type: 3}
       propertyPath: playerHealth
       value: 
-      objectReference: {fileID: 1926718794}
+      objectReference: {fileID: 0}
     - target: {fileID: 3870131558355643217, guid: 14d92abd8b2610e45817fcc4de26b70c,
         type: 3}
       propertyPath: m_RootOrder
@@ -1811,18 +1811,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7471996782758358764}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1926718794 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7471996782469909414, guid: 9e22a6b053695e84fbf9218856c93142,
-    type: 3}
-  m_PrefabInstance: {fileID: 7471996782758358764}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1926718785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b76a730c0515bf84aad96e67d51d660d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1972275424
 GameObject:
   m_ObjectHideFlags: 0
@@ -2412,16 +2400,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7471996782469909414, guid: 9e22a6b053695e84fbf9218856c93142,
-        type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 677916310}
-    - target: {fileID: 7471996782469909414, guid: 9e22a6b053695e84fbf9218856c93142,
-        type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
     - target: {fileID: 7471996782469909417, guid: 9e22a6b053695e84fbf9218856c93142,
         type: 3}
       propertyPath: m_RootOrder
