@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 0
+  levelDifficulty: {fileID: 0}
   target: {fileID: 0}
   aimTransform: {fileID: 4792198271673499509}
   lavaPrefabTransfrom: {fileID: 3870131558355643217, guid: 14d92abd8b2610e45817fcc4de26b70c,
@@ -245,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76a730c0515bf84aad96e67d51d660d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 100
   currentHealth: 0
   enemyMaxHealth: []
   enemyCurrentHealth: []

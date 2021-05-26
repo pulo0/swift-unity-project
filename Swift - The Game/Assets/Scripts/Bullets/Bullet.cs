@@ -45,7 +45,6 @@ public class Bullet : MonoBehaviour
 
             case "Enemy":
             healthController.TakeEnemyDamage(5f);
-            healthController.ColorOnDamage(sr);
             Destroy(gameObject);
             Instantiate(destroyParticle, transform.position, Quaternion.identity);
             if(healthController.enemyCurrentHealth[0] <= 0)
@@ -57,7 +56,6 @@ public class Bullet : MonoBehaviour
 
             case "PoisonEnemy":
             healthController.TakePoisonDamage(5f);
-            healthController.ColorOnDamage(sr);
             Destroy(gameObject);
             Instantiate(destroyParticle, transform.position, Quaternion.identity); 
             if(healthController.enemyCurrentHealth[1] <= 0)
@@ -69,27 +67,6 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D other) 
-    {
-        SpriteRenderer sr = other.gameObject.GetComponent<SpriteRenderer>();
-
-        switch(other.gameObject.tag)
-        {
-            case "Enemy":
-            if(healthController.canResetColor == true)
-            {
-                healthController.ResetColor(sr, Color.red);
-            }
-            break;
-
-            case "PoisonEnemy":
-            if(healthController.canResetColor == true)
-            {
-                healthController.ResetColor(sr, Color.green);
-            }
-            break;
-        }
-    }
    
     public virtual IEnumerator DestroyCountdown(float time)
     {

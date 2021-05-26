@@ -6,34 +6,39 @@ public class GroundMoving : MonoBehaviour
 {  
     [Header("Speed")]
     [SerializeField] private float exponentialSpeed;
-    private float speed = 0.5f;
+    private float speed;
 
     [Header("Other")]
     [SerializeField] private float time;
-    private float xRange = 5f;
+    private float startPos;
     private Vector3 distance;
 
     [Header("Components variables")]
     public GameObject player;
     public Transform sensorTransform;
 
+    void Start()
+    {
+        startPos = transform.position.x;
 
+        speed = Random.Range(0.5f, 4f);
+    }
 
     void Update()
     {
         //Variable that stores time in a way like timer
         time += Time.deltaTime;
-        //Lerps from 0 to time so infinite with certain speed
+        
         exponentialSpeed = Mathf.Lerp(0, 2f, speed);
 
         if(transform.position.x > distance.x)
         {
-            distance = new Vector3(-xRange, 0, 0);
+            distance = new Vector3(-XRange(), 0, 0);
             transform.Translate(Vector2.left * exponentialSpeed * Time.deltaTime);
         }
         else
         {
-            distance = new Vector3(xRange, 0, 0);
+            distance = new Vector3(XRange(), 0, 0);
             transform.Translate(Vector2.right * exponentialSpeed * Time.deltaTime);
         }
 
@@ -57,5 +62,18 @@ public class GroundMoving : MonoBehaviour
             //Player's transform is set null on exit from collider
             other.collider.transform.SetParent(null);
         }
+    }
+
+    private float XRange()
+    {
+        int minRange = 5;
+        int maxRange = 10;
+
+        float offset = Random.Range(minRange, maxRange);
+        float xRange;
+
+        xRange = startPos + offset;
+
+        return xRange;
     }
 }

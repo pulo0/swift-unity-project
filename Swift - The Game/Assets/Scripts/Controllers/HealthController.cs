@@ -79,18 +79,6 @@ public class HealthController : MonoBehaviour
         enemyMaxHealth[1] = 15f;
     }
 
-    public void ColorOnDamage(SpriteRenderer sr)
-    {
-        sr.color = new Color(1, 1, 1, 1f);
-        canResetColor = true;
-    }
-
-    public void ResetColor(SpriteRenderer sr, Color col)
-    {
-        sr.color = col;
-        canResetColor = false;
-    }
-
     public IEnumerator ColorOnDamage(float time, Color col)
     {
         //Color of player is lerped from his own color to red

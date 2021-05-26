@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     private PlayerAimGun playerShooting;
 
     public int enemyCount;
+    private static int maxLevelIndex = 1;
     
     void Start()
     {
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
         if(enemyCount == 0)
         {
             playerShooting.canShoot = false;
+            StartCoroutine(NextLevel());
         }
 
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -46,6 +48,16 @@ public class GameManager : MonoBehaviour
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
+        }
+    }
+
+    IEnumerator NextLevel()
+    {
+        yield return new WaitForSeconds(5);
+
+        if(SceneManager.GetActiveScene().buildIndex < maxLevelIndex)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
