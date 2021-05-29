@@ -17,8 +17,8 @@ public class EnemyBullet : Bullet
 
     [Header("Damage related")]
     [SerializeField] private float damageCooldown= 0.4f;
-    [SerializeField] private float poisonDamageIncreasing = 5f;
-    [SerializeField] private float damageToPlayer = 5f;
+    [SerializeField] private int poisonDamage = 5;
+    [SerializeField] private int damageToPlayer = 5;
     private int damagePerTouch = 5;
 
     [Header("Other")]
@@ -33,11 +33,6 @@ public class EnemyBullet : Bullet
     
     void Update()
     {
-        if(PoisonDamage(damageCooldown) != null)
-        {
-            poisonDamageIncreasing += Time.deltaTime;
-        }
-
         StartCoroutine(DestroyCountdown(2));
         Physics2D.IgnoreLayerCollision(enemyLayer, enemyBulletLayer);
     }
@@ -70,12 +65,12 @@ public class EnemyBullet : Bullet
 
     IEnumerator PoisonDamage(float damageCooldown)
     {
-        float firstDamageValue = 5f;
-        poisonDamageIncreasing = firstDamageValue;
+        int firstDamageValue = 5;
+        poisonDamage = firstDamageValue;
 
         for (int i = 0; i < damagePerTouch; i++)
         {
-            playerHealth.TakeDamage(poisonDamageIncreasing);
+            playerHealth.TakeDamage(poisonDamage);
             yield return new WaitForSeconds(damageCooldown);
         }
         Destroy(gameObject);

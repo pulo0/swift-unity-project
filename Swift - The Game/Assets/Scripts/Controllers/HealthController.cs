@@ -7,7 +7,6 @@ public class HealthController : MonoBehaviour
 
     [Header("Health oriented")]
     [Space]
-    public float currentHealth;
     public float[] enemyMaxHealth;
     public float[] enemyCurrentHealth;
 

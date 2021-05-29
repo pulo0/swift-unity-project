@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         }
 
-        if(Input.GetKeyDown(KeyCode.R))
+        if(Input.GetKeyDown(KeyCode.E))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

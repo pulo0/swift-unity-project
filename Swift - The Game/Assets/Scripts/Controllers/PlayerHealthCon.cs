@@ -6,8 +6,8 @@ public class PlayerHealthCon : MonoBehaviour
 {
     [Header("Health oriented")]
     [Space]
-    public float maxHealth = 100;
-    public float currentHealth;
+    public int maxHealth = 100;
+    public int currentHealth;
 
     [Header("Damage oriented")]
     [Space]
@@ -37,7 +37,7 @@ public class PlayerHealthCon : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
 

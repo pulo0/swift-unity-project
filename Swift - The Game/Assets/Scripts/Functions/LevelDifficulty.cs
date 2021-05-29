@@ -34,7 +34,7 @@ namespace Difficulty
 
         [Header("Lava Stuff")]
         [Space]
-        public float lavaDamage;
+        public int lavaDamage;
 
         [Header("Zoom & Bounds stuff")]
         [Space]
