@@ -232,7 +232,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 256
-  moveSpeed: 35
+  moveSpeed: 30
   torqueForce: 35
   gravityModifier: 2
   jumpForce: 10

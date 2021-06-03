@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     private PlayerAimGun playerShooting;
 
     public int enemyCount;
-    private static int maxLevelIndex = 1;
+    private static int maxLevelIndex = 2;
     
     void Start()
     {
@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
             Application.Quit();
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }

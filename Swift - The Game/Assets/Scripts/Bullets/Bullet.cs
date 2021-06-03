@@ -35,8 +35,6 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) 
     {
-        SpriteRenderer sr = other.gameObject.GetComponent<SpriteRenderer>();
-
         switch (other.gameObject.tag)
         {
             case "Ground":
