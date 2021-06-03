@@ -9,15 +9,15 @@ public class GameManager : MonoBehaviour
     private PlayerAimGun playerShooting;
 
     public int enemyCount;
-    private static int maxLevelIndex = 2;
+    private const int maxLevelIndex = 2;
     
-    void Start()
+    private void Start()
     {
         playerHealth = FindObjectOfType<PlayerController>().GetComponent<PlayerHealthCon>();
         playerShooting = FindObjectOfType<PlayerController>().GetComponent<PlayerAimGun>();
     }
 
-    void Update()
+    private void Update()
     {
         enemyCount = FindObjectsOfType<Enemy>().Length;
 
@@ -40,18 +40,15 @@ public class GameManager : MonoBehaviour
         ResetLevel();
     }
 
-    void ResetLevel()
+    private void ResetLevel()
     {
-        if(playerHealth.gameObject.CompareTag("Player"))
+        if(playerHealth.currentHealth <= 0)
         {
-            if(playerHealth.currentHealth <= 0)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
-    IEnumerator NextLevel()
+    private static IEnumerator NextLevel()
     {
         yield return new WaitForSeconds(5);
 

@@ -10,7 +10,7 @@ public class HealthController : MonoBehaviour
     public float[] enemyMaxHealth;
     public float[] enemyCurrentHealth;
 
-    void Awake()
+    private void Awake()
     {
         SettingArrays();
 
@@ -27,7 +27,7 @@ public class HealthController : MonoBehaviour
         enemyCurrentHealth[1] -= enemyDamage;
     }
 
-    void SettingArrays()
+    private void SettingArrays()
     {
         enemyCurrentHealth = new float[2];
         enemyMaxHealth = new float[2];

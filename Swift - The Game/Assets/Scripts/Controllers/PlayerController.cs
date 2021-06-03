@@ -22,14 +22,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int extraJumps = 1;
     public int ExtraJumps {get {return extraJumps;} set {ExtraJumps = value;}}
   
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
  
-    void Update()
+    private void Update()
     {
-        //Sets gravityScale to gravityModfier
+        //Sets gravityScale to gravityModifier
         rb.gravityScale = gravityModifier;
 
         //Basic movement of a player 
@@ -59,14 +59,14 @@ public class PlayerController : MonoBehaviour
     }
 
     //This bool determines whenever player is on the ground or not using raycast
-    bool IsGrounded()
+    private bool IsGrounded()
     {
         //Parameters for raycast
         Vector2 position = transform.position;
-        Vector2 direction = Vector2.down;
-        float distance = 1f;
+        var direction = Vector2.down;
+        const float distance = 1f;
 
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundMask);
+        var hit = Physics2D.Raycast(position, direction, distance, groundMask);
 
         //if raycast hits anything in groundMask
         if(hit.collider != null)
