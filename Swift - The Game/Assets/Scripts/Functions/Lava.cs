@@ -11,11 +11,11 @@ public class Lava : MonoBehaviour
     private Rigidbody2D playerRb;
 
     [SerializeField] private float lavaDamageCooldown = 0.4f;
-    private float force = 15f;
+    private const float force = 15f;
+    private const int damagePerTouch = 5;
     private int lavaDamage = 10;
-    private int damagePerTouch = 5;
-
-    void Awake()
+    
+    private void Awake()
     {
         playerHealth = FindObjectOfType<PlayerController>().GetComponent<PlayerHealthCon>();
         levelDifficulty = GameObject.Find("LevelManager").GetComponent<LevelDifficulty>();
@@ -36,12 +36,12 @@ public class Lava : MonoBehaviour
         
     }
 
-    IEnumerator LavaDamage(float damageCooldown)
+    private IEnumerator LavaDamage(float damageCooldown)
     {
-        int firstDamageValue = levelDifficulty.lavaDamage;
+        var firstDamageValue = levelDifficulty.lavaDamage;
         lavaDamage = firstDamageValue;
 
-        for (int i = 0; i < damagePerTouch; i++)
+        for (var i = 0; i < damagePerTouch; i++)
         {
             playerHealth.TakeDamage(lavaDamage);
             yield return new WaitForSeconds(damageCooldown);

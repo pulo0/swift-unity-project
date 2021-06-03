@@ -9,9 +9,9 @@ public class FpsCount : MonoBehaviour
     public TextMeshProUGUI frameRateText;
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        float current = 0f;
+        var current = 0f;
         current = (int)(1f / Time.unscaledDeltaTime);
         frameRate = (int)current;
         frameRateText.text = frameRate.ToString() + "FPS";

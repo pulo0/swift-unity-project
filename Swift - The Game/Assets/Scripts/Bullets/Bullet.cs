@@ -19,7 +19,7 @@ public class Bullet : MonoBehaviour
     [Header("Forces")]
     private float bounceForce = 5f;
 
-    void Awake()
+    private void Awake()
     {
         playerCollider = FindObjectOfType<PlayerController>().GetComponent<Collider2D>();
         healthController = FindObjectOfType<Enemy>().GetComponent<HealthController>();
@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
         bulletCollider = GetComponent<Collider2D>();
     }
     
-    void Update()
+    private void Update()
     {
         StartCoroutine(DestroyCountdown(1f));   
         Physics2D.IgnoreCollision(playerCollider, bulletCollider);
@@ -66,7 +66,7 @@ public class Bullet : MonoBehaviour
     }
 
    
-    public virtual IEnumerator DestroyCountdown(float time)
+    protected virtual IEnumerator DestroyCountdown(float time)
     {
         yield return new WaitForSeconds(time);
         Destroy(gameObject);

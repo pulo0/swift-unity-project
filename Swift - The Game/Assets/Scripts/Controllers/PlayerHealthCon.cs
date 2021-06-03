@@ -11,8 +11,8 @@ public class PlayerHealthCon : MonoBehaviour
 
     [Header("Damage oriented")]
     [Space]
-    private const float timeToChangeColor = 0.2f;
-    private const float lerpSpeed = 1f; 
+    private const float TimeToChangeColor = 0.2f;
+    private const float LerpSpeed = 1f; 
     private SpriteRenderer spriteRenderer;
     public Color colorOfObject;
     public TrailRenderer trail;
@@ -44,7 +44,7 @@ public class PlayerHealthCon : MonoBehaviour
         //Health bar tracks now current health
         healthBar.SetHealth(currentHealth);
         
-        StartCoroutine(ColorOnDamage(timeToChangeColor)); 
+        StartCoroutine(ColorOnDamage(TimeToChangeColor)); 
         postProcessController.IncreaseOnDamage();
     }
 
@@ -52,7 +52,7 @@ public class PlayerHealthCon : MonoBehaviour
     {
         //Color of player is lerped from his own color to red
         //Player's trail is setted to red gradient
-        spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.red, lerpSpeed);
+        spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.red, LerpSpeed);
         trail.colorGradient = damageGradient;
 
         //Wait x amount of time to change to normal color
@@ -60,7 +60,7 @@ public class PlayerHealthCon : MonoBehaviour
 
         //Color of player is lerped from damage color to his original color
         //Player's trail is setted to his original gradient
-        spriteRenderer.color = Color.Lerp(spriteRenderer.color, colorOfObject, lerpSpeed);
+        spriteRenderer.color = Color.Lerp(spriteRenderer.color, colorOfObject, LerpSpeed);
         trail.colorGradient = normalGradient;
     }
 }

@@ -462,6 +462,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2265418319790798767, guid: 5f1d36294370fb94d8c0fbc528287c0a,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1253784378}
+    - target: {fileID: 2265418319790798767, guid: 5f1d36294370fb94d8c0fbc528287c0a,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265418320235350896, guid: 5f1d36294370fb94d8c0fbc528287c0a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265418320368596246, guid: 5f1d36294370fb94d8c0fbc528287c0a,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265418320368596246, guid: 5f1d36294370fb94d8c0fbc528287c0a,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265418320368596246, guid: 5f1d36294370fb94d8c0fbc528287c0a,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 86.01001
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265418320368596246, guid: 5f1d36294370fb94d8c0fbc528287c0a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2265418320368596246, guid: 5f1d36294370fb94d8c0fbc528287c0a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -45
+      objectReference: {fileID: 0}
     - target: {fileID: 2265418321503310690, guid: 5f1d36294370fb94d8c0fbc528287c0a,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -815,6 +855,11 @@ PrefabInstance:
         type: 3}
       propertyPath: zoomValue
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 763578089103314112, guid: 6f95294f0d8b9c54a8655702d86b509e,
+        type: 3}
+      propertyPath: speedOfZoom
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 763578089103314112, guid: 6f95294f0d8b9c54a8655702d86b509e,
         type: 3}

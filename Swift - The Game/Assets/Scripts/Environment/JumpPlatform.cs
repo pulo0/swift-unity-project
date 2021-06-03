@@ -7,7 +7,7 @@ public class JumpPlatform : MonoBehaviour
     private Rigidbody2D playerRb;
     [Range(0, 30)][SerializeField] private float jumpForce;
 
-    void Awake()
+    private void Awake()
     {
         playerRb = GameObject.Find("Player").GetComponent<Rigidbody2D>();
     }
@@ -20,12 +20,8 @@ public class JumpPlatform : MonoBehaviour
         }
         else
         {
-            if(other.gameObject.GetComponent<Rigidbody2D>())
-            {
-                Rigidbody2D rb = other.gameObject.GetComponent<Rigidbody2D>();
-                
-                rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            }
+            var rb = other.gameObject.GetComponent<Rigidbody2D>();
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
     }
 }

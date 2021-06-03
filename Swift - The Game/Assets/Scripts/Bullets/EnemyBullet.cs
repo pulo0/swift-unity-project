@@ -25,13 +25,13 @@ public class EnemyBullet : Bullet
     private static int enemyLayer = 11;
     private static int enemyBulletLayer = 12;
 
-    void Awake()
+    private void Awake()
     {
         playerHealth = FindObjectOfType<PlayerController>().GetComponent<PlayerHealthCon>();
         rb2D = GetComponent<Rigidbody2D>();
     }
     
-    void Update()
+    private void Update()
     {
         StartCoroutine(DestroyCountdown(2));
         Physics2D.IgnoreLayerCollision(enemyLayer, enemyBulletLayer);
@@ -49,13 +49,17 @@ public class EnemyBullet : Bullet
             switch (bulletType)
             {
                 case BulletType.Normal:
-                playerHealth.TakeDamage(damageToPlayer);
-                Destroy(gameObject);
-                break;
+                    playerHealth.TakeDamage(damageToPlayer);
+                    Destroy(gameObject);
+                    break;
 
                 case BulletType.Poison:
-                StartCoroutine(PoisonDamage(damageCooldown));
-                break;
+                    StartCoroutine(PoisonDamage(damageCooldown));
+                    break;
+                
+                default: 
+                    playerHealth.TakeDamage(damageToPlayer);
+                    break;
             }
 
             Instantiate(destroyParticle, transform.position, Quaternion.identity);
@@ -63,12 +67,12 @@ public class EnemyBullet : Bullet
         }
     }
 
-    IEnumerator PoisonDamage(float damageCooldown)
+    private IEnumerator PoisonDamage(float damageCooldown)
     {
-        int firstDamageValue = 5;
+        const int firstDamageValue = 5;
         poisonDamage = firstDamageValue;
 
-        for (int i = 0; i < damagePerTouch; i++)
+        for (var i = 0; i < damagePerTouch; i++)
         {
             playerHealth.TakeDamage(poisonDamage);
             yield return new WaitForSeconds(damageCooldown);
@@ -77,7 +81,7 @@ public class EnemyBullet : Bullet
         yield return null;
     }
 
-    public override IEnumerator DestroyCountdown(float time)
+    protected override IEnumerator DestroyCountdown(float time)
     {
         return base.DestroyCountdown(time);
     }

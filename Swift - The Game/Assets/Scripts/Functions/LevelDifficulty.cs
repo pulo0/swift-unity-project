@@ -39,7 +39,7 @@ namespace Difficulty
         [Header("Zoom & Bounds stuff")]
         [Space]
         public int zoomValue;
-        public float speedOfZomm;
+        public float speedOfZoom;
         public float verticalBoundValue;
         public float horizontalBoundValue;
 

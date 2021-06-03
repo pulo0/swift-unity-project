@@ -8,9 +8,9 @@ public class CameraZoom : MonoBehaviour
     private LevelDifficulty levelDifficulty;
 
     private Camera cam;
-    private static float startSize = 1f; 
+    private const float startSize = 1f; 
 
-    void Awake()
+    private void Awake()
     {
         levelDifficulty = GameObject.Find("LevelManager").GetComponent<LevelDifficulty>();
         cam = GetComponent<Camera>();
@@ -18,12 +18,12 @@ public class CameraZoom : MonoBehaviour
         cam.orthographicSize = startSize;
     }
 
-    void Update()
+    private void Update()
     {
-        Zoom(levelDifficulty.zoomValue, levelDifficulty.speedOfZomm);
+        Zoom(levelDifficulty.zoomValue, levelDifficulty.speedOfZoom);
     }
 
-    void Zoom(int maxSize, float speed)
+    private void Zoom(int maxSize, float speed)
     {
         cam.orthographicSize = Mathf.SmoothStep(cam.orthographicSize, maxSize, speed);
     }

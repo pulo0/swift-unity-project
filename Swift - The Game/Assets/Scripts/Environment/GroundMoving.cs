@@ -17,14 +17,14 @@ public class GroundMoving : MonoBehaviour
     public GameObject player;
     public Transform sensorTransform;
 
-    void Start()
+    private void Start()
     {
         startPos = transform.position.x;
 
         speed = Random.Range(0.5f, 4f);
     }
 
-    void Update()
+    private void Update()
     {
         //Variable that stores time in a way like timer
         time += Time.deltaTime;
@@ -66,13 +66,12 @@ public class GroundMoving : MonoBehaviour
 
     private float XRange()
     {
-        int minRange = 5;
-        int maxRange = 10;
+        const int minRange = 5;
+        const int maxRange = 10;
 
         float offset = Random.Range(minRange, maxRange);
-        float xRange;
 
-        xRange = startPos + offset;
+        var xRange = startPos + offset;
 
         return xRange;
     }
