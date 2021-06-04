@@ -1711,6 +1711,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2265418320368596244, guid: 5f1d36294370fb94d8c0fbc528287c0a,
+        type: 3}
+      propertyPath: m_Value
+      value: 9.86
+      objectReference: {fileID: 0}
     - target: {fileID: 2265418321503310690, guid: 5f1d36294370fb94d8c0fbc528287c0a,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -1882,6 +1887,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7471996782469909412, guid: 9e22a6b053695e84fbf9218856c93142,
+        type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7471996782469909416, guid: 9e22a6b053695e84fbf9218856c93142,
         type: 3}

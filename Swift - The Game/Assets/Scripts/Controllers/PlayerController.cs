@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
         //Basic movement of a player 
         horizontalInput = Input.GetAxisRaw("Horizontal");
-        rb.AddForce(Vector2.right * moveSpeed * horizontalInput);
+        rb.AddForce(Vector2.right * horizontalInput * moveSpeed);
 
         if(IsGrounded())
         {

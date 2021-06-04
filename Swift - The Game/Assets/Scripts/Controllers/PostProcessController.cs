@@ -5,7 +5,7 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class PostProcessController : MonoBehaviour
 {
-    private const float startIntensity = 0f;
+    private const float StartIntensity = 0f;
 
     [Header("Post Process Components")]
     public PostProcessVolume postProcessVolume;
@@ -17,7 +17,7 @@ public class PostProcessController : MonoBehaviour
         postProcessVolume.profile.TryGetSettings(out vignette);
         postProcessVolume.profile.TryGetSettings(out chromaticAberration);
 
-        vignette.intensity.value = startIntensity;
+        vignette.intensity.value = StartIntensity;
     }
 
 

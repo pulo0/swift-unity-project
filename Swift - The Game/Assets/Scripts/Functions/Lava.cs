@@ -11,8 +11,8 @@ public class Lava : MonoBehaviour
     private Rigidbody2D playerRb;
 
     [SerializeField] private float lavaDamageCooldown = 0.4f;
-    private const float force = 15f;
-    private const int damagePerTouch = 5;
+    private const float Force = 15f;
+    private const int DamagePerTouch = 5;
     private int lavaDamage = 10;
     
     private void Awake()
@@ -27,7 +27,7 @@ public class Lava : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             StartCoroutine(LavaDamage(lavaDamageCooldown));
-            playerRb.AddForce(Vector2.up * force, ForceMode2D.Impulse);
+            playerRb.AddForce(Vector2.up * Force, ForceMode2D.Impulse);
         }
         else 
         {
@@ -41,7 +41,7 @@ public class Lava : MonoBehaviour
         var firstDamageValue = levelDifficulty.lavaDamage;
         lavaDamage = firstDamageValue;
 
-        for (var i = 0; i < damagePerTouch; i++)
+        for (var i = 0; i < DamagePerTouch; i++)
         {
             playerHealth.TakeDamage(lavaDamage);
             yield return new WaitForSeconds(damageCooldown);

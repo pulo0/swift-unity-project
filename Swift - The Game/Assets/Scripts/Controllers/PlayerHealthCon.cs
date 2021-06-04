@@ -50,16 +50,16 @@ public class PlayerHealthCon : MonoBehaviour
 
      private IEnumerator ColorOnDamage(float time)
     {
-        //Color of player is lerped from his own color to red
-        //Player's trail is setted to red gradient
+        //Color of player is lerp from his own color to red
+        //Player's trail is set to red gradient
         spriteRenderer.color = Color.Lerp(spriteRenderer.color, Color.red, LerpSpeed);
         trail.colorGradient = damageGradient;
 
         //Wait x amount of time to change to normal color
         yield return new WaitForSeconds(time);
 
-        //Color of player is lerped from damage color to his original color
-        //Player's trail is setted to his original gradient
+        //Color of player is lerp from damage color to his original color
+        //Player's trail is set to his original gradient
         spriteRenderer.color = Color.Lerp(spriteRenderer.color, colorOfObject, LerpSpeed);
         trail.colorGradient = normalGradient;
     }

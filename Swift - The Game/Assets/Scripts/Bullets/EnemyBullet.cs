@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBullet : Bullet
@@ -22,8 +21,8 @@ public class EnemyBullet : Bullet
     private int damagePerTouch = 5;
 
     [Header("Other")]
-    private static int enemyLayer = 11;
-    private static int enemyBulletLayer = 12;
+    private const int EnemyLayer = 11;
+    private const int EnemyBulletLayer = 12;
 
     private void Awake()
     {
@@ -34,7 +33,7 @@ public class EnemyBullet : Bullet
     private void Update()
     {
         StartCoroutine(DestroyCountdown(2));
-        Physics2D.IgnoreLayerCollision(enemyLayer, enemyBulletLayer);
+        Physics2D.IgnoreLayerCollision(EnemyLayer, EnemyBulletLayer);
     }
 
     private void OnCollisionEnter2D(Collision2D other) 
@@ -81,7 +80,7 @@ public class EnemyBullet : Bullet
         yield return null;
     }
 
-    protected override IEnumerator DestroyCountdown(float time)
+    private new IEnumerator DestroyCountdown(float time)
     {
         return base.DestroyCountdown(time);
     }

@@ -215,7 +215,7 @@ MonoBehaviour:
   levelDifficulty: {fileID: 0}
   target: {fileID: 0}
   aimTransform: {fileID: 4792198271673499509}
-  lavaPrefabTransfrom: {fileID: 3870131558355643217, guid: 14d92abd8b2610e45817fcc4de26b70c,
+  lavaPrefabTransform: {fileID: 3870131558355643217, guid: 14d92abd8b2610e45817fcc4de26b70c,
     type: 3}
   enemyRb: {fileID: 4792198273302426904}
   bullets:

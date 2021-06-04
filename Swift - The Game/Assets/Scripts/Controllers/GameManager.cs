@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     private PlayerAimGun playerShooting;
 
     public int enemyCount;
-    private const int maxLevelIndex = 2;
+    private const int MaxLevelIndex = 2;
     
     private void Start()
     {
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
 
-        if(SceneManager.GetActiveScene().buildIndex < maxLevelIndex)
+        if(SceneManager.GetActiveScene().buildIndex < MaxLevelIndex)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }

@@ -12,7 +12,7 @@ public class CameraShake : MonoBehaviour
 
        while (elapsed < duration)
        {
-           var defaultShakeValue = 1f;
+           const float defaultShakeValue = 1f;
            var x = Random.Range(-defaultShakeValue, defaultShakeValue) * magnitude;
            var y = Random.Range(-defaultShakeValue, defaultShakeValue) * magnitude;
 

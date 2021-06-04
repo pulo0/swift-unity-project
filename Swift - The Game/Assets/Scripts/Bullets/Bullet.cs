@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -17,7 +16,7 @@ public class Bullet : MonoBehaviour
     private Collider2D bulletCollider;
 
     [Header("Forces")]
-    private float bounceForce = 5f;
+    private const float BounceForce = 5f;
 
     private void Awake()
     {
@@ -38,30 +37,32 @@ public class Bullet : MonoBehaviour
         switch (other.gameObject.tag)
         {
             case "Ground":
-            rb.AddForce(Vector2.up * bounceForce, ForceMode2D.Impulse);
-            break;
+                rb.AddForce(Vector2.up * BounceForce, ForceMode2D.Impulse);
+                break;
 
             case "Enemy":
-            healthController.TakeEnemyDamage(5f);
-            Destroy(gameObject);
-            Instantiate(destroyParticle, transform.position, Quaternion.identity);
-            if(healthController.enemyCurrentHealth[0] <= 0)
-            {
-                Instantiate(enemyDestroyParticle[0], other.transform.position, Quaternion.identity);
-                Destroy(other.gameObject);
-            }
-            break;
+                healthController.TakeEnemyDamage(5f);
+                Destroy(gameObject);
+                Instantiate(destroyParticle, transform.position, Quaternion.identity);
+                
+                if(healthController.enemyCurrentHealth[0] <= 0)
+                {
+                    Instantiate(enemyDestroyParticle[0], other.transform.position, Quaternion.identity);
+                    Destroy(other.gameObject);
+                }
+                break;
 
             case "PoisonEnemy":
-            healthController.TakePoisonDamage(5f);
-            Destroy(gameObject);
-            Instantiate(destroyParticle, transform.position, Quaternion.identity); 
-            if(healthController.enemyCurrentHealth[1] <= 0)
-            {
-                Instantiate(enemyDestroyParticle[1], other.transform.position, Quaternion.identity);
-                Destroy(other.gameObject);
-            }
-            break;
+                healthController.TakePoisonDamage(5f);
+                Destroy(gameObject);
+                Instantiate(destroyParticle, transform.position, Quaternion.identity); 
+                
+                if(healthController.enemyCurrentHealth[1] <= 0)
+                {
+                    Instantiate(enemyDestroyParticle[1], other.transform.position, Quaternion.identity);
+                    Destroy(other.gameObject);
+                }
+                break;
         }
     }
 
