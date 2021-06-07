@@ -3,10 +3,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
-    [Header("Scripts variables")]
-    private HealthController healthController;
-
     [Header("Components variables")]
     private Rigidbody2D rb;
     
@@ -21,7 +17,6 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         playerCollider = FindObjectOfType<PlayerController>().GetComponent<Collider2D>();
-        healthController = FindObjectOfType<Enemy>().GetComponent<HealthController>();
         rb = GetComponent<Rigidbody2D>();
         bulletCollider = GetComponent<Collider2D>();
     }
@@ -41,33 +36,19 @@ public class Bullet : MonoBehaviour
                 break;
 
             case "Enemy":
-                healthController.TakeEnemyDamage(5f);
                 Destroy(gameObject);
                 Instantiate(destroyParticle, transform.position, Quaternion.identity);
-                
-                if(healthController.enemyCurrentHealth[0] <= 0)
-                {
-                    Instantiate(enemyDestroyParticle[0], other.transform.position, Quaternion.identity);
-                    Destroy(other.gameObject);
-                }
                 break;
 
             case "PoisonEnemy":
-                healthController.TakePoisonDamage(5f);
                 Destroy(gameObject);
-                Instantiate(destroyParticle, transform.position, Quaternion.identity); 
-                
-                if(healthController.enemyCurrentHealth[1] <= 0)
-                {
-                    Instantiate(enemyDestroyParticle[1], other.transform.position, Quaternion.identity);
-                    Destroy(other.gameObject);
-                }
+                Instantiate(destroyParticle, transform.position, Quaternion.identity);
                 break;
         }
     }
 
    
-    protected virtual IEnumerator DestroyCountdown(float time)
+    protected IEnumerator DestroyCountdown(float time)
     {
         yield return new WaitForSeconds(time);
         Destroy(gameObject);

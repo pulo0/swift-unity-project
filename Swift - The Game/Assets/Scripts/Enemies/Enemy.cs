@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using Difficulty;
 
 
 public class Enemy : MonoBehaviour
 {
-    public EnemyType enemyType; 
     public LevelDifficulty levelDifficulty;
 
     [Header("Components variables")]
@@ -17,27 +17,37 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D enemyRb;
     public GameObject[] bullets;
 
+    [Header("Particles")] 
+    public ParticleSystem[] enemyDestroyParticle;
+    
     [Header("Vectors")]
-    private Vector3 direction;
+    public Vector3 direction;
+    
+    [Header("Health oriented")]
+    [Space]
+    public float enemyMaxHealth;
+    public float enemyCurrentHealth;
 
     [Header("Other")]
     public float stoppingDistance = 1f;
     private const float JumpForce = 6f;
     private const float FirstTime = 2;
     private float timer;
-    private float timerForBullets;
+    public float timerForBullets;
     private float bulletSpeed;
     private int randomJump;
     private const int MaxRange = 5;
 
-    private void Awake()
+    public virtual void Awake()
     {
+        enemyCurrentHealth = enemyMaxHealth;
+        
         timer = FirstTime;
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         levelDifficulty = GameObject.Find("LevelManager").GetComponent<LevelDifficulty>(); 
     }
     
-    private void Update()
+    public virtual void Update()
     {
         timer -= Time.deltaTime;
         timerForBullets += Time.deltaTime; 
@@ -48,28 +58,16 @@ public class Enemy : MonoBehaviour
         var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
 
-        switch(enemyType)
-        {
-            case EnemyType.NormalEn:
-                Movement(levelDifficulty.enemyMovementSpeed);
-                Shoot(levelDifficulty.enemyShootDelay, levelDifficulty.enemyShootAmountOfBullets, levelDifficulty.enemyShootSpeed);
-                break;
-
-            case EnemyType.PoisonEn:
-                Movement(levelDifficulty.poisonEnMovementSpeed);
-                Shoot(levelDifficulty.poisonEnShootDelay, levelDifficulty.poisonEnShootAmountOfBullets, levelDifficulty.poisonEnShootSpeed);
-                StartCoroutine(ChangeEnemyGravity(levelDifficulty.gravModifier, levelDifficulty.timeToChangeGrav));
-                break;
-            
-            default:
-                Movement(levelDifficulty.enemyMovementSpeed);
-                Shoot(levelDifficulty.enemyShootDelay, levelDifficulty.enemyShootAmountOfBullets, levelDifficulty.enemyShootSpeed);
-                break;
-        }
-        
+        EnemyInteractions();
     }
 
-    private void Movement(float moveForce)
+    protected virtual void EnemyInteractions()
+    {
+        Movement(levelDifficulty.enemyMovementSpeed);
+        Shoot(levelDifficulty.enemyShootDelay, levelDifficulty.enemyShootAmountOfBullets, levelDifficulty.enemyShootSpeed);
+    }
+
+    protected void Movement(float moveForce)
     {
         //Jump functions
         if(playerController.ExtraJumps == 0 && randomJump == 1 && timer <= 0)
@@ -95,36 +93,34 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Shoot(float delay, int amountOfBullets, float bulletSpeed)
+    protected virtual void Shoot(float delay, int amountOfBullets, float bulletSpeed)
     {
         if (timerForBullets > delay)
         {
             for (var i = 0; i <= amountOfBullets; i++)
             {
-                switch(enemyType)
-                {
-                    case EnemyType.NormalEn:
-                        CreateEnemyBullet(0).GetComponent<Rigidbody2D>().AddForce((Vector2) direction * bulletSpeed + OffsetToShoot(), ForceMode2D.Impulse);
-                        timerForBullets = 0f;
-                        break;
-
-                    case EnemyType.PoisonEn:
-                        CreateEnemyBullet(1).GetComponent<Rigidbody2D>().AddForce((Vector2) direction * bulletSpeed + OffsetToShoot(), ForceMode2D.Impulse);
-                        timerForBullets = 0f;
-                        break;
-                    
-                    default:
-                        CreateEnemyBullet(0).GetComponent<Rigidbody2D>().AddForce((Vector2) direction * bulletSpeed + OffsetToShoot(), ForceMode2D.Impulse);
-                        timerForBullets = 0f;
-                        break;
-                }
+                CreateEnemyBullet(0).GetComponent<Rigidbody2D>().AddForce((Vector2) direction * bulletSpeed + OffsetToShoot(), ForceMode2D.Impulse);
+                timerForBullets = 0f;
             }
         }
     }
-
-    private void EnemyTypeAmountOfBullets()
+    
+    protected void TakeEnemyDamage(float enDamage)
     {
-        
+        enemyCurrentHealth -= enDamage;
+    }
+    
+    public virtual void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            TakeEnemyDamage(5f);
+            if (enemyCurrentHealth <= 0)
+            {
+                Instantiate(enemyDestroyParticle[0], transform.position, Quaternion.identity);
+                Destroy(gameObject);
+            }
+        }
     }
 
     private static float RandomSpreadAngle(float rangeSpread)
@@ -133,36 +129,17 @@ public class Enemy : MonoBehaviour
         return randomSpreadAngle;
     }
 
-    private static Vector2 OffsetToShoot()
+    protected static Vector2 OffsetToShoot()
     {
         var offsetToShoot = new Vector2(0, RandomSpreadAngle(10)); 
         return offsetToShoot;
     }
 
-   private GameObject CreateEnemyBullet(int index)
+   protected GameObject CreateEnemyBullet(int index)
     {
         var newBullet = Instantiate(bullets[index], transform.position + new Vector3(1, 0.5f, 0), aimTransform.rotation) as GameObject;
         return newBullet; 
     }
-
-    private IEnumerator ChangeEnemyGravity(float gravityModifier, float timeToChangeGrav)
-    {
-        const float normalGrav = 2f;
-
-        while (true)
-        {
-            yield return new WaitForSeconds(timeToChangeGrav);
-            enemyRb.gravityScale = gravityModifier;
-
-            yield return new WaitForSeconds(timeToChangeGrav);
-            enemyRb.gravityScale = normalGrav;
-        }
-        
-    }
-
-    public enum EnemyType
-    {
-        NormalEn,
-        PoisonEn
-    }
+   
+    
 }

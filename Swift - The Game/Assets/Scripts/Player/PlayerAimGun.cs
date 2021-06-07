@@ -20,8 +20,8 @@ public class PlayerAimGun : MonoBehaviour
 
 
     [Header("Rotation floats for the gun")]
-    private static float rotationDuringSpin = 180f;
-    private static float rotationToSpin = 90f;
+    private const float RotationDuringSpin = 180f;
+    private const float RotationToSpin = 90f;
 
 
     [Header("Bullet variables")]
@@ -37,7 +37,7 @@ public class PlayerAimGun : MonoBehaviour
     private float timer = 0f;
     [Range(-5, 5)][SerializeField] private float knockback = 1f;
 
-    void Awake()
+    private void Awake()
     {
         aimTransform = transform.Find("Aim");
         cam = GameObject.Find("MainCamera").GetComponent<Camera>();
@@ -49,24 +49,24 @@ public class PlayerAimGun : MonoBehaviour
         currentAmount = maxAmmoAmount;
     }
 
-    void Update()
+    private void Update()
     {
         
         timer += Time.deltaTime;
 
         //Puts mousePosition input as world point of a screen
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 aimDirection = (mousePos - transform.position).normalized;
+        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var aimDirection = (mousePos - transform.position).normalized;
 
         //This calculate angle of aimDirection in 2D (Y and X axis)
         //Then multiplies to change it from radians to degrees 
-        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        var angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
 
         //Spins a sprite of a gun whenever z axis hits 90 or -90 degrees
-        if(angle >= rotationToSpin || angle <= -rotationToSpin)
+        if(angle >= RotationToSpin || angle <= -RotationToSpin)
         {
-            aimTransform.eulerAngles = new Vector3(rotationDuringSpin, 0, -angle);
+            aimTransform.eulerAngles = new Vector3(RotationDuringSpin, 0, -angle);
         }
 
         //Ammo related, if ammo is equal 0 then it changes from shotgun to pistol
@@ -80,7 +80,7 @@ public class PlayerAimGun : MonoBehaviour
 
         GunChange();
         
-        if(Input.GetMouseButtonDown(0) && timer > levelDifficulty.timeToShoot && canShoot == true)
+        if(Input.GetMouseButtonDown(0) && timer > levelDifficulty.timeToShoot && canShoot)
         {
             timer = 0;
 
@@ -91,7 +91,7 @@ public class PlayerAimGun : MonoBehaviour
         }
     }
 
-    void GunChange()
+    private void GunChange()
     {
         if(Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
@@ -103,32 +103,31 @@ public class PlayerAimGun : MonoBehaviour
         }
     }
 
-    void FireGun()
+    private void FireGun()
     {
         //Mouse position just for a direction
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 aimDirection = (mousePos - transform.position).normalized;
-        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var aimDirection = (mousePos - transform.position).normalized;
+        var angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
 
         switch (gunsType)
         {
             //This is for normal "gun"
             case GunsType.Pistol:
-            CreateBullet().GetComponent<Rigidbody2D>().velocity = aimDirection * bulletSpeed;
-            break;
+                CreateBullet().GetComponent<Rigidbody2D>().velocity = aimDirection * bulletSpeed;
+                break;
 
             //This is for shotgun
             case GunsType.Shotgun:
+                //Subtracts from current ammo amount of bullets
+                currentAmount -= amountOfBullets;
 
-            //Subtracts from current ammo amount of bullets
-            currentAmount -= amountOfBullets;
-
-            for (int i = 0; i <= amountOfBullets; i++)
-            {   
-                CreateBullet().GetComponent<Rigidbody2D>().AddForce((Vector2) aimDirection * bulletSpeed + new Vector2(0, RandomSpreadAngle(10)), ForceMode2D.Impulse);
-            }
-            break;
+                for (var i = 0; i <= amountOfBullets; i++)
+                {   
+                    CreateBullet().GetComponent<Rigidbody2D>().AddForce((Vector2) aimDirection * bulletSpeed + new Vector2(0, RandomSpreadAngle(10)), ForceMode2D.Impulse);
+                }
+                break;
         }
     }
 
@@ -140,14 +139,13 @@ public class PlayerAimGun : MonoBehaviour
 
     private GameObject CreateBullet()
     {
-        Vector3 offset = new Vector3(1, 0.5f, 0);
-
-        GameObject newBullet = Instantiate(shotgunBulletPrefab, transform.position + offset, aimTransform.rotation) as GameObject;
+        var offset = new Vector3(1, 0.5f, 0);
+        var newBullet = Instantiate(shotgunBulletPrefab, transform.position + offset, aimTransform.rotation) as GameObject;
 
         return newBullet;
     }
 
-    public enum GunsType
+    private enum GunsType
     {
         Pistol, 
         Shotgun

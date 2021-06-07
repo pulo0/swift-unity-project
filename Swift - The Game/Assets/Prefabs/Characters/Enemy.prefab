@@ -124,7 +124,6 @@ GameObject:
   - component: {fileID: 4792198273302426907}
   - component: {fileID: 4792198273302426906}
   - component: {fileID: 4792198273302426909}
-  - component: {fileID: 8720214318580663696}
   - component: {fileID: 4792198273302426905}
   - component: {fileID: 4792198273302426904}
   m_Layer: 11
@@ -211,7 +210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b2e9c115ab0edb419aa08bf5a2987fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: 0
   levelDifficulty: {fileID: 0}
   target: {fileID: 0}
   aimTransform: {fileID: 4792198271673499509}
@@ -221,7 +219,14 @@ MonoBehaviour:
   bullets:
   - {fileID: 1382100483341595906, guid: 238976c960dd325468d7833495304931, type: 3}
   - {fileID: 9194448406229250196, guid: 80d3dbbd8d869204d8e7a67a9e2c1a7f, type: 3}
+  enemyDestroyParticle:
+  - {fileID: 679678468743487055, guid: 1160967cb313c154f9a074d37214955b, type: 3}
+  - {fileID: 679678468743487055, guid: ed9423d70fba59e4194d239f455a62a9, type: 3}
+  direction: {x: 0, y: 0, z: 0}
+  enemyMaxHealth: 10
+  enemyCurrentHealth: 0
   stoppingDistance: 2
+  timerForBullets: 0
 --- !u!114 &4792198273302426909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,20 +239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c592638b86e6b49a2f4fc0a2e1f596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8720214318580663696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4792198273302426887}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b76a730c0515bf84aad96e67d51d660d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyMaxHealth: []
-  enemyCurrentHealth: []
 --- !u!61 &4792198273302426905
 BoxCollider2D:
   m_ObjectHideFlags: 0
