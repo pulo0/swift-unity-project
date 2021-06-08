@@ -15,7 +15,6 @@ namespace Difficulty
         [Space]
         public float gravModifier;
         public float timeToChangeGrav;
-        public bool allEnemiesHaveGravity;
         public float camShakeDuration;
         public float camShakeMagnitude;
 

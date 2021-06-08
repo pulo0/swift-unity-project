@@ -22,9 +22,12 @@ public class Enemy : MonoBehaviour
     
     [Header("Vectors")]
     public Vector3 direction;
-    
-    [Header("Health oriented")]
-    [Space]
+
+    [Header("Health oriented")] [Space] 
+    private SpriteRenderer spriteRenderer;
+    private Color colorOfAnObject;
+    protected const float TimeToChangeColor = 0.15f;
+    private const float LerpSpeed = 1f;
     public float enemyMaxHealth;
     public float enemyCurrentHealth;
 
@@ -34,7 +37,6 @@ public class Enemy : MonoBehaviour
     private const float FirstTime = 2;
     private float timer;
     public float timerForBullets;
-    private float bulletSpeed;
     private int randomJump;
     private const int MaxRange = 5;
 
@@ -46,7 +48,13 @@ public class Enemy : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         levelDifficulty = GameObject.Find("LevelManager").GetComponent<LevelDifficulty>(); 
     }
-    
+
+    public virtual void Start()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        colorOfAnObject = spriteRenderer.color;
+    }
+
     public virtual void Update()
     {
         timer -= Time.deltaTime;
@@ -60,7 +68,8 @@ public class Enemy : MonoBehaviour
 
         EnemyInteractions();
     }
-
+    
+    //Everything that enemy does will be in this method
     protected virtual void EnemyInteractions()
     {
         Movement(levelDifficulty.enemyMovementSpeed);
@@ -70,6 +79,7 @@ public class Enemy : MonoBehaviour
     protected void Movement(float moveForce)
     {
         //Jump functions
+        //If player double jumps and rng will pity on you then enemy will jump
         if(playerController.ExtraJumps == 0 && randomJump == 1 && timer <= 0)
         {
             enemyRb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
@@ -83,8 +93,10 @@ public class Enemy : MonoBehaviour
         }   
 
         //Movement
+        //If distance between enemy pos and the player is > than stoppingDistance or < than -stoppingDistance
         if(Vector2.Distance(transform.position, target.position) > stoppingDistance || Vector2.Distance(transform.position, target.position) < -stoppingDistance)
         {
+            //It applies force to move to the player
             enemyRb.AddForce(direction * moveForce);
         }
         else
@@ -105,41 +117,59 @@ public class Enemy : MonoBehaviour
         }
     }
     
-    protected void TakeEnemyDamage(float enDamage)
+    protected virtual void TakeEnemyDamage(float enDamage)
     {
         enemyCurrentHealth -= enDamage;
+        StartCoroutine(ColorOnDamage(TimeToChangeColor, Color.white));
+        
+        if (enemyCurrentHealth <= 0)
+        {
+            Instantiate(enemyDestroyParticle[0], transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
+    
+    //When enemy takes damage then this routine will be activated
+    protected virtual IEnumerator ColorOnDamage(float time ,Color enemyColOnDamage)
+    {
+        //Enemy sprite color lerp from its current color to whatever the variable will be set
+        spriteRenderer.color = Color.Lerp(spriteRenderer.color, enemyColOnDamage, LerpSpeed);
+        
+        //Wait x time to change to normal color
+        yield return new WaitForSeconds(time);
+        
+        //Changes to original color
+        spriteRenderer.color = Color.Lerp(spriteRenderer.color, colorOfAnObject, LerpSpeed);
     }
     
     public virtual void OnCollisionEnter2D(Collision2D other)
     {
+        //If collided object has tag "Bullet", it will take damage to an enemy
         if (other.gameObject.CompareTag("Bullet"))
         {
             TakeEnemyDamage(5f);
-            if (enemyCurrentHealth <= 0)
-            {
-                Instantiate(enemyDestroyParticle[0], transform.position, Quaternion.identity);
-                Destroy(gameObject);
-            }
         }
     }
 
+    //This is used for other method that is called "OffsetToShoot"
     private static float RandomSpreadAngle(float rangeSpread)
     {
+        //Gets a random value from a range
         var randomSpreadAngle = Random.Range(-rangeSpread, rangeSpread);
         return randomSpreadAngle;
     }
 
     protected static Vector2 OffsetToShoot()
     {
+        //This is for random offset of a bullet in y axis
         var offsetToShoot = new Vector2(0, RandomSpreadAngle(10)); 
         return offsetToShoot;
     }
 
    protected GameObject CreateEnemyBullet(int index)
     {
+        //This instantiate a new bullet with a variable as index
         var newBullet = Instantiate(bullets[index], transform.position + new Vector3(1, 0.5f, 0), aimTransform.rotation) as GameObject;
         return newBullet; 
     }
-   
-    
 }

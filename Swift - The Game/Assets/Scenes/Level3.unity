@@ -2757,6 +2757,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 763578089103314112, guid: 6f95294f0d8b9c54a8655702d86b509e,
         type: 3}
+      propertyPath: camShakeMagnitude
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 763578089103314112, guid: 6f95294f0d8b9c54a8655702d86b509e,
+        type: 3}
       propertyPath: verticalBoundValue
       value: 20
       objectReference: {fileID: 0}

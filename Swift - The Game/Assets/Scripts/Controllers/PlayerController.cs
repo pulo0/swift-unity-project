@@ -12,15 +12,15 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     
     [Header("Physics oriented or forces")]
-    [Range(-50, 50)][SerializeField] private float moveSpeed = 5f;
-    [Range(-100, 100)][SerializeField] private float torqueForce = 35f;
+    [Range(-50, 50), SerializeField] private float moveSpeed = 5f;
+    [Range(-100, 100), SerializeField] private float torqueForce = 35f;
     [SerializeField] private float gravityModifier = 2f;
 
     [Header("Jump variables")]
-    [Range(-50, 50)][SerializeField] private float jumpForce = 10f;
+    [Range(-50, 50), SerializeField] private float jumpForce = 10f;
     [SerializeField] private int extraJumpsValue = 1;
     [SerializeField] private int extraJumps = 1;
-    public int ExtraJumps {get {return extraJumps;} set {ExtraJumps = value;}}
+    public int ExtraJumps {get {return extraJumps;} }
   
     private void Awake()
     {
@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
         if(IsGrounded())
         {
+            //If player touches the ground extraJumps variable will be "refilled"
             extraJumps = extraJumpsValue;
         }    
 
@@ -68,14 +69,8 @@ public class PlayerController : MonoBehaviour
 
         var hit = Physics2D.Raycast(position, direction, distance, groundMask);
 
-        //if raycast hits anything in groundMask
-        if(hit.collider != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        //if raycast hits anything in groundMask then it's true
+        return hit.collider != null ? true : false;
+
     }
 }

@@ -5,8 +5,7 @@ using Difficulty;
 
 public class PlayerAimGun : MonoBehaviour
 {
-    public bool canShoot = true;
-
+    
     [Header("Scripts variables")]
     private CameraShake camShake;
     private LevelDifficulty levelDifficulty;
@@ -40,7 +39,7 @@ public class PlayerAimGun : MonoBehaviour
     private void Awake()
     {
         aimTransform = transform.Find("Aim");
-        cam = GameObject.Find("MainCamera").GetComponent<Camera>();
+        cam = Camera.main;
         playerRb = GetComponent<Rigidbody2D>();
         camShake = GameObject.Find("MainCamera").GetComponent<CameraShake>();
         levelDifficulty = GameObject.Find("LevelManager").GetComponent<LevelDifficulty>();
@@ -48,14 +47,14 @@ public class PlayerAimGun : MonoBehaviour
         gunsType = GunsType.Pistol;
         currentAmount = maxAmmoAmount;
     }
-
+    
     private void Update()
     {
         
         timer += Time.deltaTime;
 
         //Puts mousePosition input as world point of a screen
-        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         var aimDirection = (mousePos - transform.position).normalized;
 
         //This calculate angle of aimDirection in 2D (Y and X axis)
@@ -80,7 +79,7 @@ public class PlayerAimGun : MonoBehaviour
 
         GunChange();
         
-        if(Input.GetMouseButtonDown(0) && timer > levelDifficulty.timeToShoot && canShoot)
+        if(Input.GetMouseButtonDown(0) && timer > levelDifficulty.timeToShoot)
         {
             timer = 0;
 
@@ -106,7 +105,7 @@ public class PlayerAimGun : MonoBehaviour
     private void FireGun()
     {
         //Mouse position just for a direction
-        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         var aimDirection = (mousePos - transform.position).normalized;
         var angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         aimTransform.eulerAngles = new Vector3(0, 0, angle);

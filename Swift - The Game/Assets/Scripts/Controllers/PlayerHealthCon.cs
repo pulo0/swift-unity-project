@@ -45,7 +45,7 @@ public class PlayerHealthCon : MonoBehaviour
         healthBar.SetHealth(currentHealth);
         
         StartCoroutine(ColorOnDamage(TimeToChangeColor)); 
-        postProcessController.IncreaseOnDamage();
+        postProcessController.VignetteOnDamage();
     }
 
      private IEnumerator ColorOnDamage(float time)

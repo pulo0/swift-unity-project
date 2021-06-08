@@ -5,7 +5,6 @@ using Difficulty;
 
 public class Lava : MonoBehaviour
 {
-
     private PlayerHealthCon playerHealth;
     private LevelDifficulty levelDifficulty;
     private Rigidbody2D playerRb;
@@ -29,7 +28,7 @@ public class Lava : MonoBehaviour
             StartCoroutine(LavaDamage(lavaDamageCooldown));
             playerRb.AddForce(Vector2.up * Force, ForceMode2D.Impulse);
         }
-        else 
+        else
         {
             Destroy(other.gameObject);
         }

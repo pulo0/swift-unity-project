@@ -10,6 +10,11 @@ public class PoisonEnemy : Enemy
     { 
         base.Awake();
     }
+
+    public new void Start()
+    {
+        base.Start();
+    }
     
     public new void Update()
     {
@@ -40,9 +45,21 @@ public class PoisonEnemy : Enemy
         }
     }
 
-    public new void TakeEnemyDamage(float enDamage)
+    protected override void TakeEnemyDamage(float enDamage)
     {
-        base.TakeEnemyDamage(enDamage);
+        enemyCurrentHealth -= enDamage;
+        StartCoroutine(ColorOnDamage(TimeToChangeColor, Color.cyan));
+        
+        if (enemyCurrentHealth <= 0)
+        {
+            Instantiate(enemyDestroyParticle[1], transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
+    }
+
+    protected override IEnumerator ColorOnDamage(float time, Color enemyColOnDamage)
+    {
+        return base.ColorOnDamage(time, Color.cyan);
     }
 
     public override void OnCollisionEnter2D(Collision2D other)
@@ -50,12 +67,6 @@ public class PoisonEnemy : Enemy
         if (other.gameObject.CompareTag("Bullet"))
         {
             TakeEnemyDamage(5f);
-            
-            if (enemyCurrentHealth <= 0)
-            {
-                Instantiate(enemyDestroyParticle[1], transform.position, Quaternion.identity);
-                Destroy(gameObject);
-            }
         }
     }
 

@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private PlayerHealthCon playerHealth;
-    private PlayerAimGun playerShooting;
 
     public int enemyCount;
     private const int MaxLevelIndex = 2;
@@ -14,29 +13,29 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         playerHealth = FindObjectOfType<PlayerController>().GetComponent<PlayerHealthCon>();
-        playerShooting = FindObjectOfType<PlayerController>().GetComponent<PlayerAimGun>();
     }
 
     private void Update()
     {
         enemyCount = FindObjectsOfType<Enemy>().Length;
-
-        if(enemyCount == 0)
+        
+        switch (enemyCount)
         {
-            playerShooting.canShoot = false;
-            StartCoroutine(NextLevel());
+            case 0:
+                StartCoroutine(NextLevel());
+                break;
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
         }
-
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
-
+        
         ResetLevel();
     }
 
@@ -50,7 +49,8 @@ public class GameManager : MonoBehaviour
 
     private static IEnumerator NextLevel()
     {
-        yield return new WaitForSeconds(5);
+        const int sec = 5;
+        yield return new WaitForSeconds(sec);
 
         if(SceneManager.GetActiveScene().buildIndex < MaxLevelIndex)
         {
