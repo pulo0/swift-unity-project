@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
-namespace Difficulty
-{
-    public class LevelDifficulty : MonoBehaviour
+    [CreateAssetMenu(fileName = "Level" ,menuName = "ScriptableObjects/LevelSetting")]
+    public class LevelDifficulty : ScriptableObject
     {
         [Header("Enemy Stuff")]
         [Space]
@@ -41,5 +40,5 @@ namespace Difficulty
         public float horizontalBoundValue;
 
     }
-}
+
 

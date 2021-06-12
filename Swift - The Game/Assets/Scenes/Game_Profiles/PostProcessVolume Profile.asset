@@ -24,13 +24,13 @@ MonoBehaviour:
     value: 1
   softKnee:
     overrideState: 0
-    value: 0.5
+    value: 0.38
   clamp:
     overrideState: 0
     value: 65472
   diffusion:
     overrideState: 1
-    value: 6
+    value: 5.5
   anamorphicRatio:
     overrideState: 1
     value: -1
@@ -39,7 +39,7 @@ MonoBehaviour:
     value: {r: 1, g: 1, b: 1, a: 1}
   fastMode:
     overrideState: 0
-    value: 0
+    value: 1
   dirtTexture:
     overrideState: 0
     value: {fileID: 28684132378477856, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

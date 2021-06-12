@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
-using Difficulty;
 
 public class CameraZoom : MonoBehaviour
 {
-    private LevelDifficulty levelDifficulty;
+    private LevelSetting levelSetting;
 
     private Camera cam;
     private const float StartSize = 1f; 
 
     private void Awake()
     {
-        levelDifficulty = GameObject.Find("LevelManager").GetComponent<LevelDifficulty>();
+        levelSetting = GameObject.Find("LevelManager").GetComponent<LevelSetting>();
         cam = GetComponent<Camera>();
 
         cam.orthographicSize = StartSize;
@@ -18,7 +17,7 @@ public class CameraZoom : MonoBehaviour
 
     private void Update()
     {
-        Zoom(levelDifficulty.zoomValue, levelDifficulty.speedOfZoom);
+        Zoom(levelSetting.zoomValue, levelSetting.speedOfZoom);
     }
 
     private void Zoom(int maxSize, float speed)

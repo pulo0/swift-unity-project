@@ -309,6 +309,32 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7471996782183794552, guid: 9e22a6b053695e84fbf9218856c93142,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7471996782183794552, guid: 9e22a6b053695e84fbf9218856c93142,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7471996782183794552, guid: 9e22a6b053695e84fbf9218856c93142,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7b732e3fc53b39e44bfd316d19642a2e,
+        type: 3}
+    - target: {fileID: 7471996782183794552, guid: 9e22a6b053695e84fbf9218856c93142,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7471996782183794559, guid: 9e22a6b053695e84fbf9218856c93142,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7471996782469909417, guid: 9e22a6b053695e84fbf9218856c93142,
         type: 3}
       propertyPath: m_RootOrder
@@ -368,6 +394,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7471996782990842249, guid: 9e22a6b053695e84fbf9218856c93142,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e22a6b053695e84fbf9218856c93142, type: 3}
@@ -1173,7 +1204,7 @@ PrefabInstance:
     - target: {fileID: 2265418320235350896, guid: 5f1d36294370fb94d8c0fbc528287c0a,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2265418320235350902, guid: 5f1d36294370fb94d8c0fbc528287c0a,
         type: 3}
@@ -2685,6 +2716,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1036042192, guid: 6f95294f0d8b9c54a8655702d86b509e, type: 3}
+      propertyPath: levelDifficulty
+      value: 
+      objectReference: {fileID: 11400000, guid: e8f81a4279a3c7c4c90362c6703729b2,
+        type: 2}
     - target: {fileID: 763578087639439090, guid: 6f95294f0d8b9c54a8655702d86b509e,
         type: 3}
       propertyPath: m_Name

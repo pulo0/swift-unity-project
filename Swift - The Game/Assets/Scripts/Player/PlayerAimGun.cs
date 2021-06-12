@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Difficulty;
+
 
 public class PlayerAimGun : MonoBehaviour
 {
     
     [Header("Scripts variables")]
     private CameraShake camShake;
-    private LevelDifficulty levelDifficulty;
+    private LevelSetting levelSetting;
 
 
     [Header("Components variables")]
@@ -34,7 +34,7 @@ public class PlayerAimGun : MonoBehaviour
 
     [Header("Other")]
     private float timer = 0f;
-    [Range(-5, 5)][SerializeField] private float knockback = 1f;
+    [Range(-5, 5)][SerializeField] private float recoil = 1f;
 
     private void Awake()
     {
@@ -42,7 +42,7 @@ public class PlayerAimGun : MonoBehaviour
         cam = Camera.main;
         playerRb = GetComponent<Rigidbody2D>();
         camShake = GameObject.Find("MainCamera").GetComponent<CameraShake>();
-        levelDifficulty = GameObject.Find("LevelManager").GetComponent<LevelDifficulty>();
+        levelSetting = GameObject.Find("LevelManager").GetComponent<LevelSetting>();
 
         gunsType = GunsType.Pistol;
         currentAmount = maxAmmoAmount;
@@ -79,14 +79,14 @@ public class PlayerAimGun : MonoBehaviour
 
         GunChange();
         
-        if(Input.GetMouseButtonDown(0) && timer > levelDifficulty.timeToShoot)
+        if(Input.GetMouseButtonDown(0) && timer > levelSetting.timeToShoot)
         {
             timer = 0;
 
             FireGun();
 
-            StartCoroutine(camShake.Shake(levelDifficulty.camShakeDuration, levelDifficulty.camShakeMagnitude));
-            playerRb.AddForce(-mousePos * knockback, ForceMode2D.Impulse);
+            StartCoroutine(camShake.Shake(levelSetting.camShakeDuration, levelSetting.camShakeMagnitude));
+            playerRb.AddForce(-mousePos * recoil, ForceMode2D.Impulse);
         }
     }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using Difficulty;
+
 using UnityEngine;
 
 public class PoisonEnemy : Enemy
@@ -23,9 +23,9 @@ public class PoisonEnemy : Enemy
 
     protected override void EnemyInteractions()
     {
-        Movement(levelDifficulty.poisonEnMovementSpeed);
-        Shoot(levelDifficulty.poisonEnShootDelay, levelDifficulty.poisonEnShootAmountOfBullets, levelDifficulty.poisonEnShootSpeed);
-        StartCoroutine(ChangeEnemyGravity(levelDifficulty.gravModifier, levelDifficulty.timeToChangeGrav));
+        Movement(levelSetting.poisonEnMovementSpeed);
+        Shoot(levelSetting.poisonEnShootDelay, levelSetting.poisonEnShootAmountOfBullets, levelSetting.poisonEnShootSpeed);
+        StartCoroutine(ChangeEnemyGravity(levelSetting.gravModifier, levelSetting.timeToChangeGrav));
     }
 
     private new void Movement(float moveForce)

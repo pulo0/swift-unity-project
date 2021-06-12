@@ -2138,11 +2138,11 @@ ParticleSystem:
     inWorldSpace: 0
   InheritVelocityModule:
     enabled: 0
-    m_Mode: 0
+    m_Mode: 1
     m_Curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0
+      scalar: 1
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -3808,7 +3808,8 @@ ParticleSystem:
     interiorCollisions: 0
   TriggerModule:
     enabled: 0
-    collisionShape0: {fileID: 0}
+    collisionShape0: {fileID: 3870131558355643217, guid: 14d92abd8b2610e45817fcc4de26b70c,
+      type: 3}
     collisionShape1: {fileID: 0}
     collisionShape2: {fileID: 0}
     collisionShape3: {fileID: 0}
@@ -3816,8 +3817,8 @@ ParticleSystem:
     collisionShape5: {fileID: 0}
     inside: 1
     outside: 0
-    enter: 0
-    exit: 0
+    enter: 1
+    exit: 1
     radiusScale: 1
   SubModule:
     serializedVersion: 2

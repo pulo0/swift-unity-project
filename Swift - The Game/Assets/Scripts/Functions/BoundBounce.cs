@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Difficulty;
 
 public class BoundBounce : MonoBehaviour
 {
-    private LevelDifficulty levelDifficulty;
+    private LevelSetting levelSetting;
     
     private float verticalBound;
     
@@ -16,15 +15,15 @@ public class BoundBounce : MonoBehaviour
     
     private void Awake()
     {
-        levelDifficulty = GameObject.Find("LevelManager").GetComponent<LevelDifficulty>();
+        levelSetting = GameObject.Find("LevelManager").GetComponent<LevelSetting>();
 
         rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
     {
-        verticalBound = levelDifficulty.verticalBoundValue;
-        horizontalBound = levelDifficulty.horizontalBoundValue; 
+        verticalBound = levelSetting.verticalBoundValue;
+        horizontalBound = levelSetting.horizontalBoundValue; 
     }
 
 

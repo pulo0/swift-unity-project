@@ -85,7 +85,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 763578089103314113}
-  - component: {fileID: 763578089103314112}
+  - component: {fileID: 1036042192}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -107,7 +107,7 @@ Transform:
   m_Father: {fileID: 763578087639439093}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &763578089103314112
+--- !u!114 &1036042192
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,25 +116,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 763578089103314174}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72b78b471e8a0e943b08de6bd802af87, type: 3}
+  m_Script: {fileID: 11500000, guid: 3c842e3c20926604c94f7970aec026b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyShootDelay: 2
+  levelDifficulty: {fileID: 11400000, guid: fc04d1cbb51406348803e2dcef0c7c01, type: 2}
+  enemyShootDelay: 0
   enemyShootAmountOfBullets: 0
-  enemyShootSpeed: 20
-  enemyMovementSpeed: 6
-  gravModifier: 0.1
-  timeToChangeGrav: 6
-  allEnemiesHaveGravity: 0
-  camShakeDuration: 0.1
-  camShakeMagnitude: 0.2
-  poisonEnMovementSpeed: 4
-  poisonEnShootDelay: 3
-  poisonEnShootAmountOfBullets: 1
-  poisonEnShootSpeed: 15
-  timeToShoot: 0.5
-  lavaDamage: 5
-  zoomValue: 8
-  speedOfZomm: 0.1
-  verticalBoundValue: 8
-  horizontalBoundValue: 14
+  enemyShootSpeed: 0
+  enemyMovementSpeed: 0
+  gravModifier: 0
+  timeToChangeGrav: 0
+  camShakeDuration: 0
+  camShakeMagnitude: 0
+  poisonEnMovementSpeed: 0
+  poisonEnShootDelay: 0
+  poisonEnShootAmountOfBullets: 0
+  poisonEnShootSpeed: 0
+  timeToShoot: 0
+  lavaDamage: 0
+  zoomValue: 0
+  speedOfZoom: 0
+  boundsActivated: 0
+  verticalBoundValue: 0
+  horizontalBoundValue: 0

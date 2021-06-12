@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
-using Difficulty;
+
 
 
 public class Enemy : MonoBehaviour
 {
-    public LevelDifficulty levelDifficulty;
+    public LevelSetting levelSetting;
 
     [Header("Components variables")]
     private PlayerController playerController;
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour
         
         timer = FirstTime;
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
-        levelDifficulty = GameObject.Find("LevelManager").GetComponent<LevelDifficulty>(); 
+        levelSetting = GameObject.Find("LevelManager").GetComponent<LevelSetting>(); 
     }
 
     public virtual void Start()
@@ -72,8 +72,8 @@ public class Enemy : MonoBehaviour
     //Everything that enemy does will be in this method
     protected virtual void EnemyInteractions()
     {
-        Movement(levelDifficulty.enemyMovementSpeed);
-        Shoot(levelDifficulty.enemyShootDelay, levelDifficulty.enemyShootAmountOfBullets, levelDifficulty.enemyShootSpeed);
+        Movement(levelSetting.enemyMovementSpeed);
+        Shoot(levelSetting.enemyShootDelay, levelSetting.enemyShootAmountOfBullets, levelSetting.enemyShootSpeed);
     }
 
     protected void Movement(float moveForce)
