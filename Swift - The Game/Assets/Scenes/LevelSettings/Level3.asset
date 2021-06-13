@@ -28,6 +28,5 @@ MonoBehaviour:
   lavaDamage: 5
   zoomValue: 10
   speedOfZoom: 0.12
-  boundsActivated: 0
-  verticalBoundValue: 0
-  horizontalBoundValue: 0
+  verticalBoundValue: 50
+  horizontalBoundValue: 50

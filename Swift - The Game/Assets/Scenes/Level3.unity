@@ -323,7 +323,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 7b732e3fc53b39e44bfd316d19642a2e,
+      objectReference: {fileID: 5324743430927945566, guid: 6d9f023f85831e74a8f1bb6dcdb21815,
         type: 3}
     - target: {fileID: 7471996782183794552, guid: 9e22a6b053695e84fbf9218856c93142,
         type: 3}
@@ -1226,6 +1226,11 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4278190080
       objectReference: {fileID: 0}
+    - target: {fileID: 2265418320235350903, guid: 5f1d36294370fb94d8c0fbc528287c0a,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -21
+      objectReference: {fileID: 0}
     - target: {fileID: 2265418320368596246, guid: 5f1d36294370fb94d8c0fbc528287c0a,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1728,7 +1733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shader: {fileID: 4800000, guid: 95703b29f49b899499233ea7308bb800, type: 3}
-  BlockCount: 450
+  BlockCount: 512
 --- !u!114 &1461870733
 MonoBehaviour:
   m_ObjectHideFlags: 0

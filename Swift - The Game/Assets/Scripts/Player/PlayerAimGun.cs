@@ -22,7 +22,9 @@ public class PlayerAimGun : MonoBehaviour
     private const float RotationDuringSpin = 180f;
     private const float RotationToSpin = 90f;
 
-
+    [Header("Animation stuff")] 
+    public Animator bananaGunAnim;
+    
     [Header("Bullet variables")]
     private float bulletSpeed = 40f;
     [SerializeField] private float randomSpreadAngle;
@@ -44,13 +46,13 @@ public class PlayerAimGun : MonoBehaviour
         camShake = GameObject.Find("MainCamera").GetComponent<CameraShake>();
         levelSetting = GameObject.Find("LevelManager").GetComponent<LevelSetting>();
 
+        
         gunsType = GunsType.Pistol;
         currentAmount = maxAmmoAmount;
     }
     
     private void Update()
     {
-        
         timer += Time.deltaTime;
 
         //Puts mousePosition input as world point of a screen
@@ -114,6 +116,7 @@ public class PlayerAimGun : MonoBehaviour
         {
             //This is for normal "gun"
             case GunsType.Pistol:
+                BananaGunAnimationSetup();
                 CreateBullet().GetComponent<Rigidbody2D>().velocity = aimDirection * bulletSpeed;
                 break;
 
@@ -128,12 +131,28 @@ public class PlayerAimGun : MonoBehaviour
                 }
                 break;
         }
+        
+        
     }
+
+    private void BananaGunAnimationSetup()
+    {
+        bananaGunAnim.SetBool("isShooting", true);
+        StartCoroutine(AnimationToIdleRoutine());
+    }
+    
 
     private float RandomSpreadAngle(float rangeSpread)
     {
         randomSpreadAngle = Random.Range(-rangeSpread, rangeSpread);
         return randomSpreadAngle;
+    }
+
+    private IEnumerator AnimationToIdleRoutine()
+    {
+        yield return new WaitForSeconds(0.25f);
+        bananaGunAnim.SetBool("isShooting", false);
+        
     }
 
     private GameObject CreateBullet()
@@ -147,6 +166,8 @@ public class PlayerAimGun : MonoBehaviour
     private enum GunsType
     {
         Pistol, 
-        Shotgun
+        Shotgun,
+        BananaGun,
+        TrafficGun
     }
 }
