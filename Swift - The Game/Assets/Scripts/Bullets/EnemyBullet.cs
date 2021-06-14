@@ -3,30 +3,20 @@ using UnityEngine;
 
 public class EnemyBullet : Bullet
 {
-    public BulletType bulletType; 
-
-    [Header("Scripts variables")]
-    private PlayerHealthCon playerHealth;
-
+    public BulletsType bulletsType;
+    
     [Header("Components variables")]
     private Rigidbody2D rb2D;
 
     [Header("Forces")]
     private float bounceBulletForce = 5f;
-
-    [Header("Damage related")]
-    [SerializeField] private float damageCooldown= 0.4f;
-    [SerializeField] private int poisonDamage = 5;
-    [SerializeField] private int damageToPlayer = 5;
-    private int damagePerTouch = 5;
-
+    
     [Header("Other")]
     private const int EnemyLayer = 11;
     private const int EnemyBulletLayer = 12;
 
     private void Awake()
     {
-        playerHealth = FindObjectOfType<PlayerController>().GetComponent<PlayerHealthCon>();
         rb2D = GetComponent<Rigidbody2D>();
     }
     
@@ -45,49 +35,21 @@ public class EnemyBullet : Bullet
             break;
 
             case "Player":
-            switch (bulletType)
-            {
-                case BulletType.Normal:
-                    playerHealth.TakeDamage(damageToPlayer);
-                    Destroy(gameObject);
-                    break;
-
-                case BulletType.Poison:
-                    StartCoroutine(PoisonDamage(damageCooldown));
-                    break;
-                
-                default: 
-                    playerHealth.TakeDamage(damageToPlayer);
-                    break;
-            }
-
-            Instantiate(destroyParticle, transform.position, Quaternion.identity);
-            break;          
+                Instantiate(destroyParticle, transform.position, Quaternion.identity);
+                Destroy(gameObject);
+                break;
         }
     }
-
-    private IEnumerator PoisonDamage(float damageCooldown)
-    {
-        const int firstDamageValue = 5;
-        poisonDamage = firstDamageValue;
-
-        for (var i = 0; i < damagePerTouch; i++)
-        {
-            playerHealth.TakeDamage(poisonDamage);
-            yield return new WaitForSeconds(damageCooldown);
-        }
-        Destroy(gameObject);
-        yield return null;
-    }
-
+    
     private new IEnumerator DestroyCountdown(float time)
     {
         return base.DestroyCountdown(time);
     }
-
-    public enum BulletType
+    
+    public enum BulletsType
     {
-        Normal, 
-        Poison
+        NormalBullet,
+        PoisonBullet
     }
+    
 }

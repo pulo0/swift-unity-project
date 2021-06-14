@@ -109,7 +109,7 @@ public class Enemy : MonoBehaviour
     {
         if (timerForBullets > delay)
         {
-            for (var i = 0; i <= amountOfBullets; i++)
+            for (var i = 0; i < amountOfBullets; i++)
             {
                 CreateEnemyBullet(0).GetComponent<Rigidbody2D>().AddForce((Vector2) direction * bulletSpeed + OffsetToShoot(), ForceMode2D.Impulse);
                 timerForBullets = 0f;

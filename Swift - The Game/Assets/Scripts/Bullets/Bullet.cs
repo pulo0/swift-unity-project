@@ -7,7 +7,6 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb;
     
     public ParticleSystem destroyParticle;
-    public ParticleSystem[] enemyDestroyParticle;
     private Collider2D playerCollider;
     private Collider2D bulletCollider;
 

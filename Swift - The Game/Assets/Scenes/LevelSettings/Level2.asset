@@ -22,12 +22,11 @@ MonoBehaviour:
   camShakeMagnitude: 0.25
   poisonEnMovementSpeed: 4
   poisonEnShootDelay: 3
-  poisonEnShootAmountOfBullets: 2
+  poisonEnShootAmountOfBullets: 3
   poisonEnShootSpeed: 15
   timeToShoot: 0.5
   lavaDamage: 5
   zoomValue: 10
   speedOfZoom: 0.12
-  boundsActivated: 1
   verticalBoundValue: 10
   horizontalBoundValue: 18

@@ -1,16 +1,23 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class PlayerHealthCon : MonoBehaviour
 {
     [Header("Health oriented")]
-    [Space]
     public int maxHealth = 100;
     public int currentHealth;
 
+    [Header("Bullets & damage to it")]
+    [SerializeField] private float damageCooldown = 0.4f;
+    [SerializeField] private int poisonDamage = 5;
+    [SerializeField] private int damageToPlayer = 5;
+    private const int DamagePerTouch = 5;
+    
     [Header("Damage oriented")]
-    [Space]
     private const float TimeToChangeColor = 0.2f;
     private const float LerpSpeed = 1f; 
     private SpriteRenderer spriteRenderer;
@@ -20,7 +27,6 @@ public class PlayerHealthCon : MonoBehaviour
     public Gradient normalGradient;
 
     [Header("Scripts")]
-    [Space]
     private HealthBar healthBar;
     private PostProcessController postProcessController;
 
@@ -37,6 +43,25 @@ public class PlayerHealthCon : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.GetComponent<EnemyBullet>() != null)
+        {
+            EnemyBullet enemyBullet = other.gameObject.GetComponent<EnemyBullet>();
+            
+            switch (enemyBullet.bulletsType)
+            {
+                case EnemyBullet.BulletsType.NormalBullet:
+                    TakeDamage(damageToPlayer);
+                    break;
+            
+                case EnemyBullet.BulletsType.PoisonBullet:
+                    StartCoroutine(PoisonDamage(damageCooldown));
+                    break;
+            }
+        }
+    }
+    
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
@@ -46,6 +71,19 @@ public class PlayerHealthCon : MonoBehaviour
         
         StartCoroutine(ColorOnDamage(TimeToChangeColor)); 
         postProcessController.VignetteOnDamage();
+    }
+    
+    private IEnumerator PoisonDamage(float damageCooldown)
+    {
+        const int firstDamageValue = 5;
+        poisonDamage = firstDamageValue;
+
+        for (var i = 0; i < DamagePerTouch; i++)
+        {
+            TakeDamage(poisonDamage);
+            yield return new WaitForSeconds(damageCooldown);
+        }
+        yield return null;
     }
 
      private IEnumerator ColorOnDamage(float time)

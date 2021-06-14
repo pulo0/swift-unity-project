@@ -9,6 +9,7 @@ public class PlayerAimGun : MonoBehaviour
     [Header("Scripts variables")]
     private CameraShake camShake;
     private LevelSetting levelSetting;
+    private WeaponSwitching weaponSwitching;
 
 
     [Header("Components variables")]
@@ -31,7 +32,6 @@ public class PlayerAimGun : MonoBehaviour
     [SerializeField] private int amountOfBullets = 10;
     [SerializeField] private int maxAmmoAmount = 10;
     [SerializeField] private int currentAmount;
-    [SerializeField] private GunsType gunsType;
 
 
     [Header("Other")]
@@ -45,9 +45,8 @@ public class PlayerAimGun : MonoBehaviour
         playerRb = GetComponent<Rigidbody2D>();
         camShake = GameObject.Find("MainCamera").GetComponent<CameraShake>();
         levelSetting = GameObject.Find("LevelManager").GetComponent<LevelSetting>();
-
+        weaponSwitching = GameObject.Find("Weapons").GetComponent<WeaponSwitching>();
         
-        gunsType = GunsType.Pistol;
         currentAmount = maxAmmoAmount;
     }
     
@@ -73,13 +72,9 @@ public class PlayerAimGun : MonoBehaviour
         //Ammo related, if ammo is equal 0 then it changes from shotgun to pistol
         if(currentAmount <= 0)
         {
-            gunsType = GunsType.Pistol;
-
-            //Placeholder
+            //PLACEHOLDER
             currentAmount = maxAmmoAmount;
         }
-
-        GunChange();
         
         if(Input.GetMouseButtonDown(0) && timer > levelSetting.timeToShoot)
         {
@@ -90,20 +85,20 @@ public class PlayerAimGun : MonoBehaviour
             StartCoroutine(camShake.Shake(levelSetting.camShakeDuration, levelSetting.camShakeMagnitude));
             playerRb.AddForce(-mousePos * recoil, ForceMode2D.Impulse);
         }
-    }
-
-    private void GunChange()
-    {
-        if(Input.GetAxis("Mouse ScrollWheel") > 0f)
+        
+        //PLACEHOLDER
+        switch (Input.inputString)
         {
-            gunsType = GunsType.Shotgun;
-        }
-        else if(Input.GetAxis("Mouse ScrollWheel") < 0f)
-        {
-            gunsType = GunsType.Pistol;
+            case "1":
+                weaponSwitching.selectedWeapon = 0;
+                break;
+            
+            case "2":
+                weaponSwitching.selectedWeapon = 1;
+                break;
         }
     }
-
+    
     private void FireGun()
     {
         //Mouse position just for a direction
@@ -112,16 +107,16 @@ public class PlayerAimGun : MonoBehaviour
         var angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
         aimTransform.eulerAngles = new Vector3(0, 0, angle);
 
-        switch (gunsType)
+        switch (weaponSwitching.selectedWeapon)
         {
             //This is for normal "gun"
-            case GunsType.Pistol:
+            case 0:
                 BananaGunAnimationSetup();
                 CreateBullet().GetComponent<Rigidbody2D>().velocity = aimDirection * bulletSpeed;
                 break;
 
             //This is for shotgun
-            case GunsType.Shotgun:
+            case 1:
                 //Subtracts from current ammo amount of bullets
                 currentAmount -= amountOfBullets;
 
@@ -162,12 +157,5 @@ public class PlayerAimGun : MonoBehaviour
 
         return newBullet;
     }
-
-    private enum GunsType
-    {
-        Pistol, 
-        Shotgun,
-        BananaGun,
-        TrafficGun
-    }
+    
 }

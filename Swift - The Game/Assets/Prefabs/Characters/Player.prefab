@@ -381,7 +381,6 @@ MonoBehaviour:
   amountOfBullets: 3
   maxAmmoAmount: 10
   currentAmount: 0
-  gunsType: 0
   recoil: 1
 --- !u!114 &679605995646538005
 MonoBehaviour:
@@ -397,6 +396,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  damageCooldown: 0.4
+  poisonDamage: 5
+  damageToPlayer: 5
   colorOfObject: {r: 0.003921569, g: 0.2509804, b: 1, a: 1}
   trail: {fileID: 7471996782469909412}
   damageGradient:
@@ -615,6 +617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9074847412392595879}
+  - component: {fileID: 1507206912}
   m_Layer: 10
   m_Name: Weapons
   m_TagString: Untagged
@@ -638,3 +641,16 @@ Transform:
   m_Father: {fileID: 7471996782990842249}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1507206912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7556250708906194403}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6be2280f75eaa246b23401ebe5ed19d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedWeapon: 0

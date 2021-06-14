@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level3
   m_EditorClassIdentifier: 
   enemyShootDelay: 2
-  enemyShootAmountOfBullets: 0
+  enemyShootAmountOfBullets: 1
   enemyShootSpeed: 20
   enemyMovementSpeed: 6
   gravModifier: 0.1
@@ -22,7 +22,7 @@ MonoBehaviour:
   camShakeMagnitude: 0.25
   poisonEnMovementSpeed: 4
   poisonEnShootDelay: 3
-  poisonEnShootAmountOfBullets: 1
+  poisonEnShootAmountOfBullets: 3
   poisonEnShootSpeed: 15
   timeToShoot: 0.5
   lavaDamage: 5
