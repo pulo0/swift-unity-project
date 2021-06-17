@@ -16,6 +16,7 @@ public class GroundMoving : MonoBehaviour
     [Header("Components variables")]
     public GameObject player;
     public Transform sensorTransform;
+    public Transform compositeShadowTransform;
 
     private void Start()
     {
@@ -60,7 +61,7 @@ public class GroundMoving : MonoBehaviour
         if(other.gameObject == player)
         {
             //Player's transform is set null on exit from collider
-            other.collider.transform.SetParent(null);
+            other.collider.transform.SetParent(compositeShadowTransform);
         }
     }
 

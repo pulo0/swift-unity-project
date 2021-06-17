@@ -28,11 +28,9 @@ public class PlayerHealthCon : MonoBehaviour
 
     [Header("Scripts")]
     private HealthBar healthBar;
-    private PostProcessController postProcessController;
 
     private void Awake()
     {
-        postProcessController = FindObjectOfType<PostProcessController>().GetComponent<PostProcessController>();
         healthBar = GameObject.Find("HealthBar").GetComponent<HealthBar>();
         currentHealth = maxHealth;
     }
@@ -68,9 +66,8 @@ public class PlayerHealthCon : MonoBehaviour
 
         //Health bar tracks now current health
         healthBar.SetHealth(currentHealth);
-        
-        StartCoroutine(ColorOnDamage(TimeToChangeColor)); 
-        postProcessController.VignetteOnDamage();
+
+        StartCoroutine(ColorOnDamage(TimeToChangeColor));
     }
     
     private IEnumerator PoisonDamage(float damageCooldown)

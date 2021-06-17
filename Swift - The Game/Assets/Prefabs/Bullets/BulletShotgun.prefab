@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,7 +105,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -227,9 +227,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destroyParticle: {fileID: 7778648648967700934, guid: 314620b639e6da946acc29bc53acff6d,
     type: 3}
-  enemyDestroyParticle:
-  - {fileID: 679678468743487055, guid: 1160967cb313c154f9a074d37214955b, type: 3}
-  - {fileID: 679678468743487055, guid: ed9423d70fba59e4194d239f455a62a9, type: 3}
 --- !u!114 &2790152659943643859
 MonoBehaviour:
   m_ObjectHideFlags: 0
