@@ -16,7 +16,7 @@ PlayerSettings:
   productName: Swift
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.11764707, g: 0.121568635, b: 0.1254902, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.15294118, g: 0.15294118, b: 0.15686275, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
@@ -82,7 +82,7 @@ PlayerSettings:
   bakeCollisionMeshes: 0
   forceSingleInstance: 0
   useFlipModelSwapchain: 1
-  resizableWindow: 0
+  resizableWindow: 1
   useMacAppStoreValidation: 0
   macAppStoreCategory: public.app-category.games
   gpuSkinning: 0
@@ -126,7 +126,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.5.0
+  bundleVersion: 0.5.1
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0

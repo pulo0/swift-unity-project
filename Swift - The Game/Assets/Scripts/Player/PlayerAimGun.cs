@@ -120,6 +120,9 @@ public class PlayerAimGun : MonoBehaviour
                 //Subtracts from current ammo amount of bullets
                 currentAmount -= amountOfBullets;
 
+                if (currentAmount <= 0)
+                    weaponSwitching.selectedWeapon = 0;
+
                 for (var i = 0; i <= amountOfBullets; i++)
                 {   
                     CreateBullet().GetComponent<Rigidbody2D>().AddForce((Vector2) aimDirection * bulletSpeed + new Vector2(0, RandomSpreadAngle(10)), ForceMode2D.Impulse);

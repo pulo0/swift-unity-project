@@ -8,11 +8,14 @@ public class GameManager : MonoBehaviour
     private PlayerHealthCon playerHealth;
 
     public int enemyCount;
-    private const int MaxLevelIndex = 2;
+    private const int MaxLevelIndex = 0;
     
     private void Start()
     {
         playerHealth = FindObjectOfType<PlayerController>().GetComponent<PlayerHealthCon>();
+        
+        //TODO: Do targetFPS into menu
+        //Application.targetFrameRate = targetFramerate;
     }
 
     private void Update()
