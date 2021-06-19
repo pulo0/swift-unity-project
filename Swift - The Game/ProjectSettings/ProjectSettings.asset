@@ -16,7 +16,7 @@ PlayerSettings:
   productName: Swift
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.15294118, g: 0.15294118, b: 0.15686275, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.8705883, g: 0.2509804, b: 0.0627451, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
@@ -126,7 +126,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.5.1
+  bundleVersion: 0.5.2
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0

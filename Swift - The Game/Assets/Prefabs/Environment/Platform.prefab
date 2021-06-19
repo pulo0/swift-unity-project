@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1606077385144559928}
   - component: {fileID: 1606077385144559931}
   - component: {fileID: 1606077385144559934}
+  - component: {fileID: 548280124}
   m_Layer: 8
   m_Name: Platform
   m_TagString: Ground
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1606077385144559930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.67, y: 4, z: 1.1523438}
-  m_LocalScale: {x: 10, y: 0.5, z: 1}
+  m_LocalScale: {x: 10, y: 0.59999996, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -125,3 +126,30 @@ MonoBehaviour:
   time: 0
   player: {fileID: 0}
   sensorTransform: {fileID: 0}
+  compositeShadowTransform: {fileID: 0}
+--- !u!114 &548280124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606077385144559930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.49964783, y: -0.48083085, z: 0}
+  - {x: 0.5004647, y: -0.49697933, z: 0}
+  - {x: 0.5010318, y: 0.48826894, z: 0}
+  - {x: -0.4999759, y: 0.5138369, z: 0}
+  m_ShapePathHash: 550524226
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -208804

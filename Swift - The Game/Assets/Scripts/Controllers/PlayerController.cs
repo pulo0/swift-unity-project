@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour
     [Range(-50, 50), SerializeField] private float jumpForce = 10f;
     [SerializeField] private int extraJumpsValue = 1;
     [SerializeField] private int extraJumps = 1;
+
+    [Header("Particles")] 
+    public ParticleSystem jumpParticle;
+    
     public int ExtraJumps {get {return extraJumps;} }
   
     private void Awake()
@@ -42,13 +46,19 @@ public class PlayerController : MonoBehaviour
             extraJumps = extraJumpsValue;
         }    
 
-        //This if statement is for double jump
+        //This if statement is for double jump (idk if this is double jump or normal jump)
         if(Input.GetKeyDown(KeyCode.Space) && extraJumps > 0)
         {
             //Adds up force and torque when Space is clicked
             //When you double jump then "extraJumps" variable will subtract 1 from the value of this variable
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             rb.AddTorque(torqueForce);
+            
+            //Creates jump particle with offset y axis value
+            var offsetForParticle = transform.position.y - 0.4f;
+            Instantiate(jumpParticle, new Vector3(transform.position.x, offsetForParticle), Quaternion.identity);
+            
+            //Value of extraJumps variable will be subtracted by 1 because player jumped
             extraJumps--;
         }
         //This if statement is for normal jump
