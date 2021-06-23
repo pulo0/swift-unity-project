@@ -145,9 +145,12 @@ public class Enemy : MonoBehaviour
     public virtual void OnCollisionEnter2D(Collision2D other)
     {
         //If collided object has tag "Bullet", it will take damage to an enemy
-        if (other.gameObject.CompareTag("Bullet"))
+        if (other.gameObject.GetComponent<Bullet>() != null)
         {
-            TakeEnemyDamage(5f);
+            Bullet playerBullet = other.gameObject.GetComponent<Bullet>();
+            
+            TakeEnemyDamage(playerBullet.bulletDamage);
+            
         }
     }
 

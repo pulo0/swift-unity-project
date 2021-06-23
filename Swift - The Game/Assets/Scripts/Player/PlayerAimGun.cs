@@ -14,7 +14,7 @@ public class PlayerAimGun : MonoBehaviour
 
     [Header("Components variables")]
     private Rigidbody2D playerRb;
-    public GameObject shotgunBulletPrefab;
+    public GameObject[] bullets;
     public Transform aimTransform;
     private Camera cam;
 
@@ -68,8 +68,7 @@ public class PlayerAimGun : MonoBehaviour
         {
             aimTransform.eulerAngles = new Vector3(RotationDuringSpin, 0, -angle);
         }
-
-        //Ammo related, if ammo is equal 0 then it changes from shotgun to pistol
+        
         if(currentAmount <= 0)
         {
             //PLACEHOLDER
@@ -96,6 +95,10 @@ public class PlayerAimGun : MonoBehaviour
             case "2":
                 weaponSwitching.selectedWeapon = 1;
                 break;
+            
+            case "3":
+                weaponSwitching.selectedWeapon = 2;
+                break;
         }
     }
     
@@ -112,7 +115,7 @@ public class PlayerAimGun : MonoBehaviour
             //This is for normal "gun"
             case 0:
                 BananaGunAnimationSetup();
-                CreateBullet().GetComponent<Rigidbody2D>().velocity = aimDirection * bulletSpeed;
+                CreateBullet(0).GetComponent<Rigidbody2D>().velocity = aimDirection * bulletSpeed;
                 break;
 
             //This is for shotgun
@@ -125,8 +128,20 @@ public class PlayerAimGun : MonoBehaviour
 
                 for (var i = 0; i <= amountOfBullets; i++)
                 {   
-                    CreateBullet().GetComponent<Rigidbody2D>().AddForce((Vector2) aimDirection * bulletSpeed + new Vector2(0, RandomSpreadAngle(10)), ForceMode2D.Impulse);
+                    CreateBullet(0).GetComponent<Rigidbody2D>().AddForce((Vector2) aimDirection * bulletSpeed + new Vector2(0, RandomSpreadAngle(10)), ForceMode2D.Impulse);
                 }
+                break;
+            
+            case 2:
+                const int maxValue = 4;
+                const int minValue = 1;
+                var randomBullet = Random.Range(minValue, maxValue);
+                currentAmount--;
+
+                if (currentAmount <= 0)
+                    weaponSwitching.selectedWeapon = 0;
+                
+                CreateBullet(randomBullet).GetComponent<Rigidbody2D>().velocity = aimDirection * bulletSpeed;
                 break;
         }
         
@@ -153,10 +168,10 @@ public class PlayerAimGun : MonoBehaviour
         
     }
 
-    private GameObject CreateBullet()
+    private GameObject CreateBullet(int i)
     {
         var offset = new Vector3(1, 0.5f, 0);
-        var newBullet = Instantiate(shotgunBulletPrefab, transform.position + offset, aimTransform.rotation) as GameObject;
+        var newBullet = Instantiate(bullets[i], transform.position + offset, aimTransform.rotation) as GameObject;
 
         return newBullet;
     }

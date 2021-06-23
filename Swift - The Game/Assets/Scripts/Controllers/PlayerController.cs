@@ -61,12 +61,6 @@ public class PlayerController : MonoBehaviour
             //Value of extraJumps variable will be subtracted by 1 because player jumped
             extraJumps--;
         }
-        //This if statement is for normal jump
-        else if(Input.GetKeyDown(KeyCode.Space) && IsGrounded() && extraJumps == 0)
-        {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            rb.AddTorque(torqueForce);
-        }
     }
 
     //This bool determines whenever player is on the ground or not using raycast
@@ -81,6 +75,5 @@ public class PlayerController : MonoBehaviour
 
         //if raycast hits anything in groundMask then it's true
         return hit.collider != null ? true : false;
-
     }
 }

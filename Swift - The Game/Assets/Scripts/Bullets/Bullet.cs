@@ -3,12 +3,15 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public float bulletDamage;
+    
     [Header("Components variables")]
     private Rigidbody2D rb;
-    
-    public ParticleSystem destroyParticle;
     private Collider2D playerCollider;
     private Collider2D bulletCollider;
+    
+    [Header("Particles")]
+    public ParticleSystem destroyParticle;
 
     [Header("Forces")]
     private const float BounceForce = 5f;
@@ -35,11 +38,6 @@ public class Bullet : MonoBehaviour
                 break;
 
             case "Enemy":
-                Destroy(gameObject);
-                Instantiate(destroyParticle, transform.position, Quaternion.identity);
-                break;
-
-            case "PoisonEnemy":
                 Destroy(gameObject);
                 Instantiate(destroyParticle, transform.position, Quaternion.identity);
                 break;

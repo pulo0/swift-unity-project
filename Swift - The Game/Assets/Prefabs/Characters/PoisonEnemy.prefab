@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 1601877837306493043}
   m_Layer: 11
   m_Name: PoisonEnemy
-  m_TagString: PoisonEnemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

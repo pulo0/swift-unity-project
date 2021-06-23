@@ -54,7 +54,7 @@ public class PlayerHealthCon : MonoBehaviour
                     break;
             
                 case EnemyBullet.BulletsType.PoisonBullet:
-                    StartCoroutine(PoisonDamage(damageCooldown));
+                    StartCoroutine(PoisonDamage());
                     break;
             }
         }
@@ -70,7 +70,7 @@ public class PlayerHealthCon : MonoBehaviour
         StartCoroutine(ColorOnDamage(TimeToChangeColor));
     }
     
-    private IEnumerator PoisonDamage(float damageCooldown)
+    private IEnumerator PoisonDamage()
     {
         const int firstDamageValue = 5;
         poisonDamage = firstDamageValue;
