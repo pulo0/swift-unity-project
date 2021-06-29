@@ -520,15 +520,15 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   normalGradient:
     serializedVersion: 2
-    key0: {r: 0.003921569, g: 0.2509804, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 0, g: 0.2216984, b: 0.9056604, a: 1}
+    key1: {r: 0.636253, g: 0, b: 0.78431374, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 20316
+    ctime0: 15420
     ctime1: 65535
     ctime2: 0
     ctime3: 0
@@ -536,7 +536,7 @@ MonoBehaviour:
     ctime5: 0
     ctime6: 0
     ctime7: 0
-    atime0: 0
+    atime0: 578
     atime1: 65535
     atime2: 0
     atime3: 0
@@ -586,7 +586,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -2
   m_Time: 0.25
   m_Parameters:
     serializedVersion: 3
@@ -617,19 +617,19 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.003921569, g: 0.2509804, b: 1, a: 1}
-      key1: {r: 0.9725491, g: 0.9803922, b: 1, a: 1}
-      key2: {r: 0, g: 0, b: 0, a: 0}
-      key3: {r: 0, g: 0, b: 0, a: 0}
-      key4: {r: 0, g: 0, b: 0, a: 0}
+      key0: {r: 0, g: 0.2216984, b: 0.9056604, a: 1}
+      key1: {r: 0.636253, g: 0, b: 0.78431374, a: 1}
+      key2: {r: 0.5129032, g: 0, b: 1, a: 0}
+      key3: {r: 0.003921569, g: 0.92549014, b: 1, a: 0}
+      key4: {r: 0.003921569, g: 0.92549014, b: 1, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 20316
+      ctime0: 15420
       ctime1: 65535
-      ctime2: 0
-      ctime3: 0
-      ctime4: 0
+      ctime2: 65535
+      ctime3: 65535
+      ctime4: 65535
       ctime5: 0
       ctime6: 0
       ctime7: 0

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     private PlayerHealthCon playerHealth;
 
     public int enemyCount;
-    private const int MaxLevelIndex = 1;
+    private const int MaxLevelIndex = 2;
     
     private void Start()
     {
