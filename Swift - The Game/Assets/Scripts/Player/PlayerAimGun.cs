@@ -27,7 +27,7 @@ public class PlayerAimGun : MonoBehaviour
     public Animator bananaGunAnim;
     
     [Header("Bullet variables")]
-    private float bulletSpeed = 40f;
+    private const float BulletSpeed = 40f;
     [SerializeField] private float randomSpreadAngle;
     [SerializeField] private int amountOfBullets = 10;
     [SerializeField] private int maxAmmoAmount = 10;
@@ -115,7 +115,7 @@ public class PlayerAimGun : MonoBehaviour
             //This is for normal "gun"
             case 0:
                 BananaGunAnimationSetup();
-                CreateBullet(0).GetComponent<Rigidbody2D>().velocity = aimDirection * bulletSpeed;
+                CreateBullet(0).GetComponent<Rigidbody2D>().velocity = aimDirection * BulletSpeed;
                 break;
 
             //This is for shotgun
@@ -128,7 +128,7 @@ public class PlayerAimGun : MonoBehaviour
 
                 for (var i = 0; i <= amountOfBullets; i++)
                 {   
-                    CreateBullet(0).GetComponent<Rigidbody2D>().AddForce((Vector2) aimDirection * bulletSpeed + new Vector2(0, RandomSpreadAngle(10)), ForceMode2D.Impulse);
+                    CreateBullet(0).GetComponent<Rigidbody2D>().AddForce((Vector2) aimDirection * BulletSpeed + new Vector2(0, RandomSpreadAngle(10)), ForceMode2D.Impulse);
                 }
                 break;
             
@@ -141,7 +141,7 @@ public class PlayerAimGun : MonoBehaviour
                 if (currentAmount <= 0)
                     weaponSwitching.selectedWeapon = 0;
                 
-                CreateBullet(randomBullet).GetComponent<Rigidbody2D>().velocity = aimDirection * bulletSpeed;
+                CreateBullet(randomBullet).GetComponent<Rigidbody2D>().velocity = aimDirection * BulletSpeed;
                 break;
         }
         
@@ -165,7 +165,6 @@ public class PlayerAimGun : MonoBehaviour
     {
         yield return new WaitForSeconds(0.25f);
         bananaGunAnim.SetBool("isShooting", false);
-        
     }
 
     private GameObject CreateBullet(int i)
