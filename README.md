@@ -1,5 +1,5 @@
 <h1 align="center">Swift</h1>
-<p align="center">Shoot and kill some squares. Multiple varieties of squares with different weapons!</p>
+<p align="center">:collision:Shoot and kill some squares. Multiple varieties of squares with different weapons!:collision:</p>
 
 ## The game - Swift
 Small personal indie game with squares that apparently doesn't know when to stop. Originally I started working on this game in April 2021 but the amount of sprawling ideas comming into my head overwhelmed me. But I'm eager to complete it, or at least try to finish it starting from these year. Swift is using `2019.4.25f1 version of Unity Engine`
